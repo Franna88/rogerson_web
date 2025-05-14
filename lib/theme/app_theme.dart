@@ -8,6 +8,11 @@ class AppTheme {
   static const Color silver = Color(0xFFC0C0C0);
   static const Color lightSilver = Color(0xFFE6E6E6);
   
+  // New silver theme colors
+  static const Color primarySilver = Color(0xFF9E9E9E);  // A darker silver for better contrast
+  static const Color accentSilver = Color(0xFFB8B8B8);   // Medium silver for accents
+  static const Color lightAccentSilver = Color(0xFFD8D8D8); // Light silver for hover states
+  
   // Background colors
   static const Color white = Color(0xFFFAFAFA);
   static const Color charcoal = Color(0xFF2D2D2D);
@@ -28,18 +33,18 @@ class AppTheme {
   );
 
   static const LinearGradient silverGradient = LinearGradient(
-    colors: [silver, lightSilver],
+    colors: [primarySilver, lightSilver],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
   // Theme data
   static ThemeData lightTheme = ThemeData(
-    primaryColor: gold,
+    primaryColor: primarySilver,
     scaffoldBackgroundColor: white,
     colorScheme: ColorScheme.light(
-      primary: gold,
-      secondary: silver,
+      primary: primarySilver,
+      secondary: accentSilver,
       tertiary: accentBlue,
       surface: white,
       background: white,
@@ -55,7 +60,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: gold,
+        backgroundColor: primarySilver,
         foregroundColor: white,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         textStyle: GoogleFonts.montserrat(

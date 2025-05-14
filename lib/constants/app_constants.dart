@@ -1,6 +1,6 @@
 class AppConstants {
   // App Info
-  static const String appName = "Dr. Elizabeth Morgan";
+  static const String appName = "Nathan Rogerson";
   static const String appTagline = "Premium Psychological Services for Elite Professionals";
   
   // Navigation
@@ -17,9 +17,9 @@ class AppConstants {
   static const String ctaButtonText = "Schedule a Consultation";
   
   // About Page
-  static const String aboutTitle = "Dr. Elizabeth Morgan";
+  static const String aboutTitle = "Nathan Rogerson";
   static const String aboutSubtitle = "Specialized in executive psychology and high-performance coaching";
-  static const String aboutDescription = "With over 15 years of experience working with high-profile clients, Dr. Morgan provides sophisticated psychological services that address the complex challenges faced by executives, entrepreneurs, and public figures.";
+  static const String aboutDescription = "With over 15 years of experience working with high-profile clients, Nathan Rogerson provides sophisticated psychological services that address the complex challenges faced by executives, entrepreneurs, and public figures.";
   static const String qualificationsTitle = "Credentials & Expertise";
   static const List<String> qualifications = [
     "Ph.D. in Clinical Psychology, Harvard University",
@@ -47,7 +47,7 @@ class AppConstants {
   // Contact Page
   static const String contactTitle = "Private Consultation";
   static const String contactSubtitle = "Begin your journey to exceptional psychological wellbeing";
-  static const String contactDescription = "All inquiries are handled with the utmost discretion and privacy. Dr. Morgan personally reviews each consultation request to ensure her expertise aligns with your specific needs.";
+  static const String contactDescription = "All inquiries are handled with the utmost discretion and privacy. Nathan Rogerson personally reviews each consultation request to ensure his expertise aligns with your specific needs.";
 
   // Blog section titles and descriptions
   static const String blogTitle = "Resources & Insights";
@@ -64,7 +64,7 @@ class AppConstants {
       'title': 'The Executive Mind: Strategies for Peak Performance',
       'category': 'Articles',
       'image': 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
-      'author': 'Dr. Sarah Morgan',
+      'author': 'Nathan Rogerson',
       'date': 'June 15, 2023',
       'description': 'Learn how top executives maintain mental clarity and make decisive choices under pressure. This comprehensive guide explores cognitive techniques for enhanced decision-making and emotional resilience in high-stakes environments.',
     },
@@ -72,7 +72,7 @@ class AppConstants {
       'title': 'Balancing Success and Connection: The Relationship Guide',
       'category': 'Articles',
       'image': 'https://images.unsplash.com/photo-1542338347-4fff3276af78?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'author': 'Dr. Sarah Morgan',
+      'author': 'Nathan Rogerson',
       'date': 'May 22, 2023',
       'description': 'Discover how to nurture meaningful relationships while pursuing career excellence. This article provides actionable insights for maintaining emotional intimacy and open communication despite demanding schedules.',
     },
@@ -80,7 +80,7 @@ class AppConstants {
       'title': 'Stress Transformation Technique',
       'category': 'Videos',
       'image': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
-      'author': 'Dr. Sarah Morgan',
+      'author': 'Nathan Rogerson',
       'date': 'April 10, 2023',
       'duration': '18:35',
       'description': 'A guided video session demonstrating a powerful technique to transform stress into focused energy. Learn how to use cognitive reframing to change your relationship with pressure and leverage it for peak performance.',

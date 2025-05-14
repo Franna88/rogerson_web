@@ -31,13 +31,17 @@ class QuickTipCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppTheme.charcoal.withOpacity(0.4),
+        color: AppTheme.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppTheme.gold.withOpacity(0.3),
-          width: 1,
-        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.primarySilver.withOpacity(0.3),
+            offset: const Offset(0, 3),
+            blurRadius: 10,
+          ),
+        ],
       ),
+      clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -46,12 +50,12 @@ class QuickTipCard extends StatelessWidget {
             width: 54,
             height: 54,
             decoration: BoxDecoration(
-              color: AppTheme.gold.withOpacity(0.15),
+              color: AppTheme.primarySilver.withOpacity(0.15),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(
               _getIconData(tip['icon']),
-              color: AppTheme.gold,
+              color: AppTheme.primarySilver,
               size: 28,
             ),
           ),
@@ -64,7 +68,7 @@ class QuickTipCard extends StatelessWidget {
               fontFamily: 'Playfair Display',
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: AppTheme.white,
+              color: AppTheme.primarySilver,
               height: 1.3,
             ),
           ),
@@ -76,7 +80,7 @@ class QuickTipCard extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 15,
-              color: AppTheme.white.withOpacity(0.8),
+              color: AppTheme.primarySilver.withOpacity(0.8),
               height: 1.6,
             ),
           ),
@@ -98,7 +102,7 @@ class QuickTipCard extends StatelessWidget {
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.gold,
+                      color: AppTheme.primarySilver,
                     ),
                   ),
                   const SizedBox(width: 6),

@@ -65,15 +65,15 @@ class _PremiumButtonState extends State<PremiumButton> with SingleTickerProvider
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            gradient: widget.isOutlined ? null : AppTheme.goldGradient,
+            gradient: widget.isOutlined ? null : AppTheme.silverGradient,
             border: widget.isOutlined 
-                ? Border.all(color: AppTheme.gold, width: 2) 
+                ? Border.all(color: AppTheme.primarySilver, width: 2) 
                 : null,
             borderRadius: BorderRadius.circular(8),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: AppTheme.gold.withOpacity(0.3),
+                      color: AppTheme.primarySilver.withOpacity(0.3),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     )
@@ -85,7 +85,7 @@ class _PremiumButtonState extends State<PremiumButton> with SingleTickerProvider
             child: InkWell(
               onTap: widget.onPressed,
               borderRadius: BorderRadius.circular(8),
-              splashColor: AppTheme.lightGold.withOpacity(0.3),
+              splashColor: AppTheme.lightAccentSilver.withOpacity(0.3),
               highlightColor: Colors.transparent,
               child: Center(
                 child: Text(
@@ -95,7 +95,7 @@ class _PremiumButtonState extends State<PremiumButton> with SingleTickerProvider
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.0,
-                    color: widget.isOutlined ? AppTheme.gold : AppTheme.white,
+                    color: widget.isOutlined ? AppTheme.primarySilver : AppTheme.white,
                   ),
                 ),
               ),

@@ -74,6 +74,8 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
+        final bool isDarkBackground = _opacityAnimation.value <= 0.1;
+        
         return AppBar(
           key: _scaffoldKey,
           elevation: _elevationAnimation.value,
@@ -84,8 +86,8 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(_opacityAnimation.value > 0.1 ? 0.0 : 0.4),
-                  Colors.black.withOpacity(_opacityAnimation.value > 0.1 ? 0.0 : 0.0),
+                  Colors.black.withOpacity(isDarkBackground ? 0.4 : 0.0),
+                  Colors.black.withOpacity(isDarkBackground ? 0.1 : 0.0),
                 ],
               ),
             ),
@@ -99,20 +101,20 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
               Text(
                 AppConstants.appName,
                 style: TextStyle(
-                  color: _opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white,
+                  color: isDarkBackground ? AppTheme.white : AppTheme.darkText,
                   fontFamily: 'Playfair Display',
                   fontWeight: FontWeight.bold,
                   fontSize: isDesktop ? 24 : 20,
-                  // Add text shadow to ensure visibility on light backgrounds when not scrolled
-                  shadows: _opacityAnimation.value > 0.1 
-                    ? [] 
-                    : [
+                  // Add text shadow to ensure visibility on dark backgrounds
+                  shadows: isDarkBackground
+                    ? [
                         Shadow(
                           offset: const Offset(0, 1),
                           blurRadius: 3.0,
                           color: Colors.black.withOpacity(0.5),
                         ),
-                      ],
+                      ]
+                    : null,
                 ),
               ),
               if (isDesktop) const SizedBox(width: 8),
@@ -120,27 +122,29 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 Container(
                   height: 24,
                   width: 1,
-                  color: AppTheme.gold,
+                  color: isDarkBackground ? AppTheme.white.withOpacity(0.6) : AppTheme.primarySilver,
                 ),
               if (isDesktop) const SizedBox(width: 8),
               if (isDesktop)
                 Text(
                   AppConstants.appTagline,
                   style: TextStyle(
-                    color: _opacityAnimation.value > 0.1 ? AppTheme.darkText.withOpacity(0.8) : AppTheme.white,
+                    color: isDarkBackground 
+                      ? AppTheme.white.withOpacity(0.9) 
+                      : AppTheme.darkText.withOpacity(0.8),
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w300,
                     fontSize: 14,
-                    // Add text shadow to ensure visibility on light backgrounds when not scrolled
-                    shadows: _opacityAnimation.value > 0.1 
-                      ? [] 
-                      : [
+                    // Add text shadow to ensure visibility on dark backgrounds
+                    shadows: isDarkBackground
+                      ? [
                           Shadow(
                             offset: const Offset(0, 1),
                             blurRadius: 3.0,
                             color: Colors.black.withOpacity(0.5),
                           ),
-                        ],
+                        ]
+                      : null,
                   ),
                 ),
             ],
@@ -151,18 +155,18 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                   IconButton(
                     icon: Icon(
                       Icons.menu,
-                      color: _opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white,
+                      color: isDarkBackground ? AppTheme.white : AppTheme.darkText,
                       size: 28,
                       // Add shadow to ensure visibility on light backgrounds when not scrolled
-                      shadows: _opacityAnimation.value > 0.1 
-                        ? [] 
-                        : [
+                      shadows: isDarkBackground
+                        ? [
                             Shadow(
                               offset: const Offset(0, 1),
                               blurRadius: 3.0,
                               color: Colors.black.withOpacity(0.5),
                             ),
-                          ],
+                          ]
+                        : null,
                     ),
                     onPressed: () {
                       // Show custom sliding drawer
@@ -207,7 +211,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                      color: AppTheme.silver.withOpacity(0.2),
+                      color: AppTheme.primarySilver.withOpacity(0.2),
                       width: 1,
                     ),
                   ),
@@ -250,10 +254,10 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppTheme.lightSilver.withOpacity(0.2),
+                  color: AppTheme.primarySilver.withOpacity(0.2),
                   border: Border(
                     top: BorderSide(
-                      color: AppTheme.silver.withOpacity(0.2),
+                      color: AppTheme.primarySilver.withOpacity(0.2),
                       width: 1,
                     ),
                   ),
@@ -276,11 +280,11 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                         Icon(
                           Icons.email_outlined,
                           size: 18,
-                          color: AppTheme.gold,
+                          color: AppTheme.primarySilver,
                         ),
                         const SizedBox(width: 12),
                         Text(
-                          "contact@drmorgan.com",
+                          "contact@nathanrogerson.com",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 15,
@@ -295,7 +299,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                         Icon(
                           Icons.phone_outlined,
                           size: 18,
-                          color: AppTheme.gold,
+                          color: AppTheme.primarySilver,
                         ),
                         const SizedBox(width: 12),
                         Text(
@@ -350,10 +354,10 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.gold.withOpacity(0.1) : Colors.transparent,
+          color: isSelected ? AppTheme.primarySilver.withOpacity(0.1) : Colors.transparent,
           border: Border(
             left: BorderSide(
-              color: isSelected ? AppTheme.gold : Colors.transparent,
+              color: isSelected ? AppTheme.primarySilver : Colors.transparent,
               width: 4,
             ),
           ),
@@ -362,7 +366,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
           children: [
             Icon(
               icon,
-              color: isSelected ? AppTheme.gold : AppTheme.darkText.withOpacity(0.7),
+              color: isSelected ? AppTheme.primarySilver : AppTheme.darkText.withOpacity(0.7),
               size: 24,
             ),
             const SizedBox(width: 16),
@@ -372,7 +376,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 fontFamily: 'Montserrat',
                 fontSize: 18,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected ? AppTheme.gold : AppTheme.darkText,
+                color: isSelected ? AppTheme.primarySilver : AppTheme.darkText,
               ),
             ),
           ],
@@ -403,39 +407,119 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
     });
   }
 
-  Widget _buildNavItem(String label, int index, bool isSelected) {
-    return InkWell(
+  Widget _buildNavItem(String title, int index, bool isSelected) {
+    // Get current background state
+    final bool isDarkBackground = _opacityAnimation.value <= 0.1;
+    
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          widget.onTabSelected(index);
+        },
+        splashColor: Colors.transparent,
+        hoverColor: AppTheme.primarySilver.withOpacity(0.05),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: isSelected ? AppTheme.primarySilver.withOpacity(0.1) : Colors.transparent,
+                borderRadius: BorderRadius.circular(4),
+                border: Border(
+                  bottom: BorderSide(
+                    color: isSelected ? AppTheme.primarySilver : Colors.transparent,
+                    width: 2,
+                  ),
+                ),
+              ),
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 15,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isDarkBackground 
+                    ? AppTheme.white 
+                    : (isSelected 
+                        ? AppTheme.primarySilver 
+                        : AppTheme.darkText.withOpacity(0.7)),
+                  letterSpacing: 0.3,
+                  shadows: isDarkBackground
+                    ? [
+                        Shadow(
+                          offset: const Offset(0, 1),
+                          blurRadius: 2.0,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      ]
+                    : null,
+                ),
+              ),
+            ),
+            const SizedBox(height: 2),
+            Container(
+              height: 2,
+              width: 20,
+              color: isSelected ? AppTheme.primarySilver : Colors.transparent,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      child: IconButton(
+        iconSize: 24,
+        icon: Icon(
+          icon,
+          color: AppTheme.primarySilver,
+        ),
+        onPressed: onPressed,
+        splashRadius: 20,
+      ),
+    );
+  }
+
+  Widget _buildSocialIcon(IconData icon, VoidCallback onPressed) {
+    return Container(
+      margin: const EdgeInsets.only(right: 12),
+      child: IconButton(
+        iconSize: 20,
+        icon: Icon(
+          icon,
+          color: AppTheme.primarySilver,
+        ),
+        onPressed: onPressed,
+        splashRadius: 18,
+      ),
+    );
+  }
+
+  Widget _buildMobileNavItem(String title, int index, bool isSelected) {
+    return ListTile(
+      dense: true,
       onTap: () {
         widget.onTabSelected(index);
+        Navigator.pop(context); // Close drawer after selection
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isSelected ? AppTheme.gold : Colors.transparent,
-              width: 2,
-            ),
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: isSelected ? AppTheme.gold : (_opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white),
-            fontFamily: 'Montserrat',
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-            fontSize: 16,
-            // Add text shadow to ensure visibility on light backgrounds when not scrolled
-            shadows: _opacityAnimation.value > 0.1 
-              ? [] 
-              : [
-                  Shadow(
-                    offset: const Offset(0, 1),
-                    blurRadius: 3.0,
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                ],
-          ),
+      selected: isSelected,
+      selectedTileColor: AppTheme.primarySilver.withOpacity(0.1),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontFamily: 'Montserrat',
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: isSelected ? AppTheme.primarySilver : AppTheme.darkText,
+          letterSpacing: 0.3,
         ),
       ),
     );

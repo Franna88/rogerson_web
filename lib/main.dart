@@ -587,7 +587,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       child: Icon(
         icon,
-        color: AppTheme.gold,
+        color: AppTheme.primarySilver,
         size: 20,
       ),
     );

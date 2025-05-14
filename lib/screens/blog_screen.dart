@@ -120,10 +120,10 @@ class _BlogScreenState extends State<BlogScreen> {
           children: [
             const SizedBox(height: 80), // Space for AppBar
             Container(
-              width: 60,
+              width: 40,
               height: 2,
-              color: AppTheme.gold,
-              margin: const EdgeInsets.only(bottom: 24),
+              color: AppTheme.primarySilver,
+              margin: const EdgeInsets.only(bottom: 8),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -185,10 +185,10 @@ class _BlogScreenState extends State<BlogScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.gold : Colors.transparent,
+                  color: isSelected ? AppTheme.primarySilver.withOpacity(0.1) : Colors.transparent,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: isSelected ? AppTheme.gold : Colors.grey.shade300,
+                    color: isSelected ? AppTheme.primarySilver : Colors.grey.shade300,
                   ),
                 ),
                 child: Text(
@@ -218,10 +218,17 @@ class _BlogScreenState extends State<BlogScreen> {
             children: [
               const SectionTitle(
                 title: "Featured Resources",
-                subtitle: "Specially curated content to enhance your psychological wellbeing",
+                subtitle: "Discover our premium collection of psychological insights and practical strategies for growth",
                 centerAlign: true,
+                dividerColor: AppTheme.primarySilver,
               ),
               const SizedBox(height: 40),
+              Container(
+                width: 80,
+                height: 4,
+                color: AppTheme.primarySilver,
+                margin: const EdgeInsets.only(bottom: 24),
+              ),
               LayoutBuilder(
                 builder: (context, constraints) {
                   final screenWidth = constraints.maxWidth;
@@ -265,6 +272,25 @@ class _BlogScreenState extends State<BlogScreen> {
                     );
                   }
                 },
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 4,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        AppTheme.primarySilver.withOpacity(0.5),
+                        Colors.transparent,
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -429,7 +455,7 @@ class _BlogScreenState extends State<BlogScreen> {
                 subtitle: "Practical, easy-to-implement techniques for daily excellence",
                 centerAlign: true,
                 textColor: AppTheme.white,
-                dividerColor: AppTheme.gold,
+                dividerColor: AppTheme.primarySilver,
               ),
               const SizedBox(height: 40),
               LayoutBuilder(
@@ -482,7 +508,7 @@ class _BlogScreenState extends State<BlogScreen> {
               Container(
                 width: 60,
                 height: 2,
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
                 margin: const EdgeInsets.only(bottom: 24),
               ),
               LayoutBuilder(
@@ -550,19 +576,19 @@ class _BlogScreenState extends State<BlogScreen> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
-                                  color: AppTheme.silver.withOpacity(0.3),
+                                  color: AppTheme.primarySilver.withOpacity(0.3),
                                 ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
-                                  color: AppTheme.silver.withOpacity(0.3),
+                                  color: AppTheme.primarySilver.withOpacity(0.3),
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
-                                  color: AppTheme.gold.withOpacity(0.5),
+                                  color: AppTheme.primarySilver.withOpacity(0.5),
                                 ),
                               ),
                               contentPadding: const EdgeInsets.symmetric(
@@ -611,19 +637,19 @@ class _BlogScreenState extends State<BlogScreen> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: AppTheme.silver.withOpacity(0.3),
+                                    color: AppTheme.primarySilver.withOpacity(0.3),
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: AppTheme.silver.withOpacity(0.3),
+                                    color: AppTheme.primarySilver.withOpacity(0.3),
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: AppTheme.gold.withOpacity(0.5),
+                                    color: AppTheme.primarySilver.withOpacity(0.5),
                                   ),
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(

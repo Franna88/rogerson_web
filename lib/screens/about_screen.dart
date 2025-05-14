@@ -54,7 +54,7 @@ class AboutScreen extends StatelessWidget {
             Container(
               width: 60,
               height: 2,
-              color: AppTheme.gold,
+              color: AppTheme.primarySilver,
               margin: const EdgeInsets.only(bottom: 24),
             ),
             Padding(
@@ -144,23 +144,11 @@ class AboutScreen extends StatelessWidget {
           aspectRatio: 3 / 4,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
+            child: Image.asset(
+              'images/clientImg.jpg',
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  color: AppTheme.lightSilver,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                          : null,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
-                    ),
-                  ),
-                );
-              },
+             
+             
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   decoration: BoxDecoration(
@@ -206,7 +194,7 @@ class AboutScreen extends StatelessWidget {
         Container(
           width: 50,
           height: 2,
-          color: AppTheme.gold,
+          color: AppTheme.primarySilver,
           margin: const EdgeInsets.only(bottom: 24),
         ),
         HoverHighlightText(
@@ -247,19 +235,19 @@ class AboutScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppTheme.gold,
+                    color: AppTheme.primarySilver,
                     width: 1,
                   ),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.mail_outline,
-                  color: AppTheme.gold,
+                  color: AppTheme.primarySilver,
                   size: 24,
                 ),
               ),
               const SizedBox(width: 16),
               const Text(
-                "dr.morgan@premiumpsychology.com",
+                "dr.Rogerson@premiumpsychology.com",
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
@@ -286,7 +274,7 @@ class AboutScreen extends StatelessWidget {
             children: [
               SectionTitle(
                 title: AppConstants.qualificationsTitle,
-                subtitle: "Dr. Morgan brings world-class credentials and specialized expertise to her practice, ensuring clients receive the highest standard of psychological care.",
+                subtitle: "Nathan Rogerson brings world-class credentials and specialized expertise to his practice, ensuring clients receive the highest standard of psychological care.",
                 centerAlign: true,
               ),
               const SizedBox(height: 60),
@@ -368,12 +356,12 @@ class AboutScreen extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: AppTheme.lightGold.withOpacity(0.2),
+                color: AppTheme.lightAccentSilver.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icons[index % icons.length],
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
                 size: 26,
               ),
             ),
@@ -417,7 +405,7 @@ class AboutScreen extends StatelessWidget {
               Container(
                 width: 60,
                 height: 2,
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
                 margin: const EdgeInsets.only(bottom: 24),
               ),
               Padding(
@@ -493,7 +481,7 @@ class AboutScreen extends StatelessWidget {
         final bool isInWrap = constraints.maxWidth > 300;
         
         return HoverGlowCard(
-          color: AppTheme.gold.withOpacity(0.2),
+          color: AppTheme.primarySilver.withOpacity(0.2),
           child: Container(
             width: isInWrap ? 200 : double.infinity,
             padding: const EdgeInsets.all(16),
@@ -501,7 +489,7 @@ class AboutScreen extends StatelessWidget {
               color: Colors.white.withOpacity(0.05),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppTheme.gold.withOpacity(0.3),
+                color: AppTheme.primarySilver.withOpacity(0.3),
                 width: 1,
               ),
             ),
@@ -509,7 +497,7 @@ class AboutScreen extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: AppTheme.gold,
+                  color: AppTheme.primarySilver,
                   size: 36,
                 ),
                 const SizedBox(height: 16),
@@ -564,7 +552,7 @@ class AboutScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  "Schedule your private consultation to explore how Dr. Morgan's expertise can support your psychological wellbeing and professional success.",
+                  "Schedule your private consultation to explore how Nathan Rogerson's expertise can support your psychological wellbeing and professional success.",
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 18,
@@ -619,7 +607,7 @@ class _HoverScaleCardState extends State<HoverScaleCard> {
           boxShadow: [
             BoxShadow(
               color: _isHovered 
-                  ? AppTheme.gold.withOpacity(0.15) 
+                  ? AppTheme.primarySilver.withOpacity(0.15) 
                   : Colors.transparent,
               blurRadius: 20,
               spreadRadius: 1,
@@ -703,13 +691,13 @@ class _HoverBorderCardState extends State<HoverBorderCard> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: _isHovered ? AppTheme.gold : Colors.transparent,
+            color: _isHovered ? AppTheme.primarySilver : Colors.transparent,
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
               color: _isHovered 
-                  ? AppTheme.gold.withOpacity(0.1)
+                  ? AppTheme.primarySilver.withOpacity(0.1)
                   : Colors.transparent,
               blurRadius: 15,
               spreadRadius: 2,
@@ -753,7 +741,7 @@ class _HoverElevateCardState extends State<HoverElevateCard> {
           boxShadow: [
             BoxShadow(
               color: _isHovered 
-                  ? AppTheme.gold.withOpacity(0.3)
+                  ? AppTheme.primarySilver.withOpacity(0.3)
                   : Colors.transparent,
               blurRadius: 20,
               spreadRadius: 2,
@@ -794,7 +782,7 @@ class _HoverTextLinkState extends State<HoverTextLink> {
         transform: _isHovered ? (Matrix4.identity()..scale(1.02)) : Matrix4.identity(),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: _isHovered ? AppTheme.lightGold.withOpacity(0.1) : Colors.transparent,
+          color: _isHovered ? AppTheme.lightAccentSilver.withOpacity(0.1) : Colors.transparent,
         ),
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         child: widget.child,
@@ -829,10 +817,10 @@ class _HoverHighlightTextState extends State<HoverHighlightText> {
       child: AnimatedDefaultTextStyle(
         duration: const Duration(milliseconds: 200),
         style: widget.style.copyWith(
-          color: _isHovered ? AppTheme.gold : widget.style.color,
+          color: _isHovered ? AppTheme.primarySilver : widget.style.color,
           shadows: _isHovered ? [
             Shadow(
-              color: AppTheme.gold.withOpacity(0.3),
+              color: AppTheme.primarySilver.withOpacity(0.3),
               blurRadius: 12,
               offset: const Offset(0, 0),
             ),

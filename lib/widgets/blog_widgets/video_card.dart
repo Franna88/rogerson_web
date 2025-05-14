@@ -49,7 +49,7 @@ class VideoCard extends StatelessWidget {
                             value: loadingProgress.expectedTotalBytes != null
                                 ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                                 : null,
-                            valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
+                            valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primarySilver),
                           ),
                         ),
                       );
@@ -86,13 +86,13 @@ class VideoCard extends StatelessWidget {
                             width: 60,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: AppTheme.gold.withOpacity(0.9),
+                              color: AppTheme.primarySilver.withOpacity(0.9),
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppTheme.gold.withOpacity(0.3),
-                                  blurRadius: 15,
-                                  offset: const Offset(0, 5),
+                                  color: AppTheme.primarySilver.withOpacity(0.3),
+                                  blurRadius: 10,
+                                  spreadRadius: 2,
                                 ),
                               ],
                             ),
@@ -119,14 +119,24 @@ class VideoCard extends StatelessWidget {
                     color: Colors.black.withOpacity(0.7),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Text(
-                    video['duration'],
-                    style: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        video['duration'],
+                        style: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.primarySilver,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      const Icon(
+                        Icons.timer,
+                        size: 16,
+                        color: AppTheme.primarySilver,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -204,13 +214,13 @@ class VideoCard extends StatelessWidget {
                             fontFamily: 'Montserrat',
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.gold,
+                            color: AppTheme.primarySilver,
                           ),
                         ),
                         const SizedBox(width: 4),
                         const Icon(
                           Icons.arrow_forward,
-                          color: AppTheme.gold,
+                          color: AppTheme.primarySilver,
                           size: 14,
                         ),
                       ],

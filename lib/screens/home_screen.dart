@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   // List of testimonials for the carousel
   final List<Map<String, String>> _testimonials = [
     {
-      'text': "Dr. Morgan's approach to executive psychology has been transformative for my leadership style. Her insights have helped me navigate complex business decisions with greater clarity and purpose.",
+      'text': "Nathan Rogerson's approach to executive psychology has been transformative for my leadership style. His insights have helped me navigate complex business decisions with greater clarity and purpose.",
       'author': "Richard J. Hartman",
       'position': "CEO, Hartman Industries"
     },
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       'position': "CFO, Global Ventures"
     },
     {
-      'text': "Working with Dr. Morgan on relationship coaching has given me tools to balance my demanding career with meaningful personal connections. The results have been nothing short of extraordinary.",
+      'text': "Working with Nathan Rogerson on relationship coaching has given me tools to balance my demanding career with meaningful personal connections. The results have been nothing short of extraordinary.",
       'author': "Jonathan Blackwell",
       'position': "Managing Director, Blackwell Partners"
     },
@@ -136,8 +136,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.white,
-            AppTheme.lightSilver.withOpacity(0.5),
+            Colors.black.withOpacity(0.7),
+            AppTheme.charcoal.withOpacity(0.6),
           ],
         ),
       ),
@@ -148,12 +148,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Transform.translate(
               offset: Offset(0, parallaxOffset * 0.2),
               child: Opacity(
-                opacity: 0.1,
+                opacity: 0.15,
                 child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=500&auto=format&fit=crop'),
-                      repeat: ImageRepeat.repeat,
+                      image: NetworkImage('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=500&auto=format&fit=crop'),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Container(
               width: 150,
               height: 2,
-              color: AppTheme.gold.withOpacity(0.6),
+              color: AppTheme.primarySilver.withOpacity(0.8),
             ),
           ),
           if (!isMobile) Positioned(
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Container(
               width: 100,
               height: 2,
-              color: AppTheme.gold.withOpacity(0.6),
+              color: AppTheme.primarySilver.withOpacity(0.8),
             ),
           ),
           
@@ -209,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             Container(
                               width: 100,
                               height: 1,
-                              color: AppTheme.gold,
+                              color: AppTheme.primarySilver.withOpacity(0.9),
                               margin: const EdgeInsets.only(bottom: 24),
                             ),
                             Text(
@@ -218,9 +218,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 fontFamily: 'Playfair Display',
                                 fontSize: isMobile ? 32 : (isTablet ? 42 : 48), // Further reduced size for mobile
                                 fontWeight: FontWeight.bold,
-                                color: AppTheme.gold,
+                                color: AppTheme.white,
                                 letterSpacing: 1.0,
                                 height: 1.2, // Tighter line height to avoid overflow
+                                shadows: [
+                                  Shadow(
+                                    offset: const Offset(0, 1),
+                                    blurRadius: 3.0,
+                                    color: Colors.black.withOpacity(0.4),
+                                  ),
+                                ],
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -232,8 +239,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: isMobile ? 16 : (isTablet ? 18 : 22), // Further reduced size for mobile
-                                  color: AppTheme.darkText.withOpacity(0.8),
+                                  color: AppTheme.lightSilver,
                                   height: 1.4, // Tighter line height to avoid overflow
+                                  shadows: [
+                                    Shadow(
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 2.0,
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
+                                  ],
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -246,8 +260,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: isMobile ? 14 : (isTablet ? 15 : 18), // Further reduced size for mobile
-                                  color: AppTheme.darkText.withOpacity(0.7),
+                                  color: AppTheme.white.withOpacity(0.8),
                                   height: 1.5,
+                                  shadows: [
+                                    Shadow(
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 2.0,
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
+                                  ],
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -315,13 +336,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                        color: AppTheme.silver,
+                                        color: AppTheme.primarySilver,
                                         width: 1,
                                       ),
                                     ),
                                     child: const Icon(
                                       Icons.keyboard_arrow_down_rounded,
-                                      color: AppTheme.silver,
+                                      color: AppTheme.primarySilver,
                                       size: 30,
                                     ),
                                   ),
@@ -355,7 +376,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             opacity: value, // Will never be less than 0.3 due to tween start value
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 80),
               color: AppTheme.white,
               child: Column(
                 children: [
@@ -372,41 +393,56 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       final isTablet = screenWidth >= 768 && screenWidth < 1200;
                       
                       if (isMobile) {
+                        // On mobile, use a single column layout with full width cards
                         return Column(
                           children: _buildServiceCardsWithAnimation(
                             scrollable: false, 
                             maxCards: 3,
+                            containerWidth: screenWidth,
                           ),
                         );
                       } else if (isTablet) {
+                        // On tablet, use a 2x1 grid with properly sized cards
                         return Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _buildServiceCardsWithAnimation(
-                                scrollable: false, 
-                                maxCards: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 40),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Wrap(
+                              spacing: 20,
+                              runSpacing: 20,
+                              alignment: WrapAlignment.center,
                               children: [
                                 _buildServiceCardWithAnimation(
-                                  index: 2, 
+                                  index: 0, 
                                   scrollable: false,
-                                  delay: 0.4,
+                                  delay: 0,
+                                  containerWidth: (screenWidth - 20) / 2,
+                                ),
+                                _buildServiceCardWithAnimation(
+                                  index: 1, 
+                                  scrollable: false,
+                                  delay: 0.2,
+                                  containerWidth: (screenWidth - 20) / 2,
                                 ),
                               ],
+                            ),
+                            const SizedBox(height: 20),
+                            _buildServiceCardWithAnimation(
+                              index: 2, 
+                              scrollable: false,
+                              delay: 0.4,
+                              containerWidth: (screenWidth - 40) / 2,
                             ),
                           ],
                         );
                       } else {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        // On desktop, use a wrap layout for better responsiveness
+                        return Wrap(
+                          spacing: 20,
+                          runSpacing: 20,
+                          alignment: WrapAlignment.center,
                           children: _buildServiceCardsWithAnimation(
                             scrollable: false, 
                             maxCards: 3,
+                            containerWidth: (screenWidth - 40) / 3,
                           ),
                         );
                       }
@@ -431,6 +467,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   List<Widget> _buildServiceCardsWithAnimation({
     required bool scrollable,
     required int maxCards,
+    required double containerWidth,
   }) {
     final services = [
       {
@@ -456,6 +493,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         index: index,
         scrollable: scrollable,
         delay: index * 0.2, // Staggered delay
+        containerWidth: containerWidth,
       ),
     );
   }
@@ -464,6 +502,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     required int index,
     required bool scrollable,
     required double delay,
+    required double containerWidth,
   }) {
     final services = [
       {
@@ -494,10 +533,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         // Always start with a minimum opacity to ensure visibility
         final animationValue = (value - delay).clamp(0.3, 1.0);
             
-        return Padding(
+        return Container(
+          width: containerWidth,
           padding: EdgeInsets.symmetric(
-            horizontal: scrollable ? 12 : 16,
-            vertical: scrollable ? 8 : 16,
+            horizontal: scrollable ? 12 : 10,
+            vertical: scrollable ? 8 : 10,
           ),
           child: Transform.translate(
             offset: Offset(0, 20 * (1 - animationValue)),
@@ -556,7 +596,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         scale: value,
                         child: const Icon(
                           Icons.format_quote,
-                          color: AppTheme.gold,
+                          color: AppTheme.primarySilver,
                           size: 60,
                         ),
                       );
@@ -612,6 +652,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               fontStyle: FontStyle.italic,
               color: AppTheme.white,
               height: 1.6,
+              shadows: [
+                Shadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 2.0,
+                  color: Colors.black.withOpacity(0.3),
+                ),
+              ],
             ),
             textAlign: TextAlign.center,
           ),
@@ -626,7 +673,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             return Container(
               width: width,
               height: 2,
-              color: AppTheme.silver,
+              color: AppTheme.primarySilver,
             );
           },
         ),
@@ -637,8 +684,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             fontFamily: 'Montserrat',
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: AppTheme.gold,
+            color: AppTheme.primarySilver,
             letterSpacing: 1.0,
+            shadows: [
+              Shadow(
+                offset: Offset(0, 1),
+                blurRadius: 2.0,
+                color: Color.fromRGBO(0, 0, 0, 0.3),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 8),
@@ -648,6 +702,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             fontFamily: 'Montserrat',
             fontSize: 16,
             color: AppTheme.white.withOpacity(0.8),
+            shadows: [
+              Shadow(
+                offset: const Offset(0, 1),
+                blurRadius: 2.0,
+                color: Colors.black.withOpacity(0.3),
+              ),
+            ],
           ),
         ),
         
@@ -678,7 +739,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         width: isActive ? 24 : 8,
         height: 8,
         decoration: BoxDecoration(
-          color: isActive ? AppTheme.gold : AppTheme.silver.withOpacity(0.3),
+          color: isActive ? AppTheme.primarySilver : AppTheme.accentSilver.withOpacity(0.3),
           borderRadius: BorderRadius.circular(4),
         ),
       ),
@@ -708,7 +769,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 color: AppTheme.white,
                 border: Border(
                   top: BorderSide(
-                    color: AppTheme.silver.withOpacity(0.3),
+                    color: AppTheme.accentSilver.withOpacity(0.3),
                     width: 1,
                   ),
                 ),
@@ -725,7 +786,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         width: width,
                         height: 2,
                         margin: const EdgeInsets.only(bottom: 24),
-                        color: AppTheme.gold,
+                        color: AppTheme.primarySilver,
                       );
                     },
                   ),
@@ -745,7 +806,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               fontFamily: 'Playfair Display',
                               fontSize: isMobile ? 30 : 36, // Smaller font on mobile
                               fontWeight: FontWeight.bold,
-                              color: AppTheme.darkText,
+                              color: AppTheme.charcoal,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -759,11 +820,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     constraints: const BoxConstraints(maxWidth: 700),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "Schedule your confidential consultation to discover how Dr. Morgan's premium psychological services can help you achieve exceptional mental wellbeing and performance.",
+                      "Schedule your confidential consultation to discover how Nathan Rogerson's premium psychological services can help you achieve exceptional mental wellbeing and performance.",
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: isMobile ? 16 : 18, // Smaller font on mobile
-                        color: AppTheme.darkText.withOpacity(0.8),
+                        color: AppTheme.charcoal.withOpacity(0.8),
                         height: 1.5,
                       ),
                       textAlign: TextAlign.center,
@@ -801,19 +862,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   // Creates floating decorative elements for visual appeal
   List<Widget> _buildFloatingElements() {
     return [
-      // Gold circle
+      // Silver circle
       Positioned(
         top: MediaQuery.of(context).size.height * 0.2,
         right: MediaQuery.of(context).size.width * 0.15,
         child: _buildAnimatedShape(
           size: 10,
-          color: AppTheme.gold.withOpacity(0.7),
+          color: AppTheme.primarySilver.withOpacity(0.9),
           shape: BoxShape.circle,
           animationOffset: 20,
           animationDuration: 4,
         ),
       ),
-      // Silver square
+      // Light silver square
       Positioned(
         top: MediaQuery.of(context).size.height * 0.6,
         left: MediaQuery.of(context).size.width * 0.1,
@@ -821,21 +882,21 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           angle: math.pi / 4,
           child: _buildAnimatedShape(
             size: 15,
-            color: AppTheme.silver.withOpacity(0.5),
+            color: AppTheme.lightSilver.withOpacity(0.7),
             shape: BoxShape.rectangle,
             animationOffset: 15,
             animationDuration: 5,
           ),
         ),
       ),
-      // Gold rectangle
+      // Silver rectangle
       Positioned(
         bottom: MediaQuery.of(context).size.height * 0.25,
         right: MediaQuery.of(context).size.width * 0.2,
         child: _buildAnimatedShape(
           width: 40,
           height: 5,
-          color: AppTheme.gold.withOpacity(0.4),
+          color: AppTheme.primarySilver.withOpacity(0.8),
           shape: BoxShape.rectangle,
           animationOffset: 10,
           animationDuration: 6,

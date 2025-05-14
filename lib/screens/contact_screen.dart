@@ -66,7 +66,7 @@ class _ContactScreenState extends State<ContactScreen> {
             Container(
               width: 60,
               height: 2,
-              color: AppTheme.gold,
+              color: AppTheme.primarySilver,
               margin: const EdgeInsets.only(bottom: 24),
             ),
             Padding(
@@ -155,7 +155,7 @@ class _ContactScreenState extends State<ContactScreen> {
         Container(
           width: 50,
           height: 2,
-          color: AppTheme.gold,
+          color: AppTheme.primarySilver,
           margin: const EdgeInsets.only(bottom: 24),
         ),
         const Text(
@@ -187,7 +187,7 @@ class _ContactScreenState extends State<ContactScreen> {
         _buildContactItem(
           icon: Icons.email_outlined,
           title: "Email Address",
-          detail: "contact@drmorgan.com",
+          detail: "contact@nathanrogerson.com",
         ),
         const SizedBox(height: 24),
         _buildContactItem(
@@ -225,12 +225,12 @@ class _ContactScreenState extends State<ContactScreen> {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppTheme.lightGold.withOpacity(0.2),
+            color: AppTheme.primarySilver.withOpacity(0.2),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
             icon,
-            color: AppTheme.gold,
+            color: AppTheme.primarySilver,
             size: 24,
           ),
         ),
@@ -315,7 +315,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
         ],
         border: Border.all(
-          color: AppTheme.silver.withOpacity(0.3),
+          color: AppTheme.primarySilver.withOpacity(0.3),
           width: 1,
         ),
       ),
@@ -333,7 +333,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            "Complete the form below to request a confidential consultation with Dr. Morgan.",
+            "Complete the form below to request a confidential consultation with Nathan Rogerson.",
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 15,
@@ -459,7 +459,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   children: [
                     const Icon(
                       Icons.lock_outline,
-                      color: AppTheme.gold,
+                      color: AppTheme.primarySilver,
                       size: 18,
                     ),
                     const SizedBox(width: 8),
@@ -516,13 +516,13 @@ class _ContactScreenState extends State<ContactScreen> {
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(
+              color: AppTheme.darkText.withOpacity(0.6),
               fontFamily: 'Montserrat',
               fontSize: 15,
-              color: AppTheme.darkText.withOpacity(0.4),
             ),
             prefixIcon: Icon(
               icon,
-              color: AppTheme.gold,
+              color: AppTheme.primarySilver,
               size: 22,
             ),
             filled: true,
@@ -530,21 +530,21 @@ class _ContactScreenState extends State<ContactScreen> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: AppTheme.silver.withOpacity(0.3),
+                color: AppTheme.primarySilver.withOpacity(0.3),
                 width: 1,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: AppTheme.silver.withOpacity(0.3),
+                color: AppTheme.primarySilver.withOpacity(0.3),
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: AppTheme.gold.withOpacity(0.8),
+                color: AppTheme.primarySilver.withOpacity(0.8),
                 width: 1,
               ),
             ),
@@ -558,6 +558,11 @@ class _ContactScreenState extends State<ContactScreen> {
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16,
               vertical: maxLines > 1 ? 16 : 0,
+            ),
+            labelStyle: TextStyle(
+              color: AppTheme.darkText.withOpacity(0.6),
+              fontFamily: 'Montserrat',
+              fontSize: 15,
             ),
           ),
           style: const TextStyle(
@@ -591,7 +596,7 @@ class _ContactScreenState extends State<ContactScreen> {
             borderRadius: BorderRadius.circular(8),
             color: AppTheme.lightSilver.withOpacity(0.1),
             border: Border.all(
-              color: AppTheme.silver.withOpacity(0.3),
+              color: AppTheme.primarySilver.withOpacity(0.3),
               width: 1,
             ),
           ),
@@ -600,7 +605,7 @@ class _ContactScreenState extends State<ContactScreen> {
               value: _selectedService,
               icon: const Icon(
                 Icons.keyboard_arrow_down,
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
               ),
               isExpanded: true,
               style: const TextStyle(
@@ -656,7 +661,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
         ],
         border: Border.all(
-          color: AppTheme.gold.withOpacity(0.3),
+          color: AppTheme.primarySilver.withOpacity(0.3),
           width: 1,
         ),
       ),
@@ -664,7 +669,7 @@ class _ContactScreenState extends State<ContactScreen> {
         children: [
           const Icon(
             Icons.check_circle_outline,
-            color: AppTheme.gold,
+            color: AppTheme.primarySilver,
             size: 80,
           ),
           const SizedBox(height: 24),
@@ -680,11 +685,11 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
           const SizedBox(height: 16),
           Text(
-            "Your consultation request has been received. Dr. Morgan's office will contact you within 24 hours to schedule your appointment.",
-            style: TextStyle(
+            "Your consultation request has been received. Nathan Rogerson's office will contact you within 24 hours to schedule your appointment.",
+            style: const TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 16,
-              color: AppTheme.darkText.withOpacity(0.8),
+              color: AppTheme.darkText,
               height: 1.6,
             ),
             textAlign: TextAlign.center,
@@ -730,7 +735,7 @@ class _ContactScreenState extends State<ContactScreen> {
               ),
               const SizedBox(height: 24),
               Text(
-                "Dr. Morgan maintains the highest standards of confidentiality and discretion. All sessions and client information are protected by both legal confidentiality requirements and state-of-the-art security measures.",
+                "Nathan Rogerson maintains the highest standards of confidentiality and discretion. All sessions and client information are protected by both legal confidentiality requirements and state-of-the-art security measures.",
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
@@ -850,7 +855,7 @@ class _ContactScreenState extends State<ContactScreen> {
         color: Colors.white.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.gold.withOpacity(0.3),
+          color: AppTheme.primarySilver.withOpacity(0.3),
           width: 1,
         ),
       ),
@@ -858,7 +863,7 @@ class _ContactScreenState extends State<ContactScreen> {
         children: [
           Icon(
             icon,
-            color: AppTheme.gold,
+            color: AppTheme.primarySilver,
             size: 40,
           ),
           const SizedBox(height: 16),

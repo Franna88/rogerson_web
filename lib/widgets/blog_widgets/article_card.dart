@@ -46,7 +46,7 @@ class ArticleCard extends StatelessWidget {
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                             : null,
-                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
+                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primarySilver),
                       ),
                     ),
                   );
@@ -134,14 +134,14 @@ class ArticleCard extends StatelessWidget {
                             fontFamily: 'Montserrat',
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.gold,
+                            color: AppTheme.primarySilver,
                           ),
                         ),
                         const SizedBox(width: 4),
                         const Icon(
                           Icons.arrow_forward,
-                          color: AppTheme.gold,
-                          size: 14,
+                          size: 15,
+                          color: AppTheme.primarySilver,
                         ),
                       ],
                     ),

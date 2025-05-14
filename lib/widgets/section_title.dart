@@ -30,7 +30,7 @@ class SectionTitle extends StatelessWidget {
             Container(
               width: 60,
               height: 2,
-              color: dividerColor ?? AppTheme.gold,
+              color: dividerColor ?? AppTheme.primarySilver,
               margin: const EdgeInsets.only(bottom: 16),
             ),
           Text(
@@ -63,7 +63,7 @@ class SectionTitle extends StatelessWidget {
             Container(
               width: 120,
               height: 1,
-              color: (dividerColor ?? AppTheme.silver).withOpacity(0.5),
+              color: (dividerColor ?? AppTheme.accentSilver).withOpacity(0.5),
               margin: const EdgeInsets.only(top: 24),
             ),
         ],

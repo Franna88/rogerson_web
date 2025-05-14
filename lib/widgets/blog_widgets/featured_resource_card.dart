@@ -40,20 +40,20 @@ class FeaturedResourceCard extends StatelessWidget {
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
                   return Container(
-                    color: AppTheme.lightSilver,
+                    color: AppTheme.primarySilver.withOpacity(0.1),
                     child: Center(
                       child: CircularProgressIndicator(
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                             : null,
-                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
+                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primarySilver),
                       ),
                     ),
                   );
                 },
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: AppTheme.lightSilver,
+                    color: AppTheme.primarySilver.withOpacity(0.1),
                     child: Center(
                       child: Icon(Icons.image_not_supported, color: AppTheme.darkText.withOpacity(0.5), size: 40),
                     ),
@@ -71,18 +71,18 @@ class FeaturedResourceCard extends StatelessWidget {
               children: [
                 // Category badge
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: AppTheme.gold.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
+                    color: AppTheme.primarySilver.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(4),
                   ),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Text(
                     resource['category'],
                     style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.gold,
+                      color: AppTheme.primarySilver,
                     ),
                   ),
                 ),
@@ -177,13 +177,13 @@ class FeaturedResourceCard extends StatelessWidget {
                             fontFamily: 'Montserrat',
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.gold,
+                            color: AppTheme.primarySilver,
                           ),
                         ),
                         const SizedBox(width: 8),
                         const Icon(
                           Icons.arrow_forward,
-                          color: AppTheme.gold,
+                          color: AppTheme.primarySilver,
                           size: 16,
                         ),
                       ],

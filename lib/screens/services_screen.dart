@@ -213,7 +213,7 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
             Container(
               width: 60,
               height: 2,
-              color: AppTheme.gold,
+              color: AppTheme.primarySilver,
               margin: const EdgeInsets.only(bottom: 24),
             ),
             Padding(
@@ -411,7 +411,7 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                             : null,
-                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
+                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primarySilver),
                       ),
                     ),
                   );
@@ -461,12 +461,12 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: AppTheme.lightGold.withOpacity(0.2),
+                    color: AppTheme.lightAccentSilver.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
                     icon,
-                    color: AppTheme.gold,
+                    color: AppTheme.primarySilver,
                     size: 26,
                   ),
                 ),
@@ -519,7 +519,7 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
                     height: 8,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.gold,
+                      color: AppTheme.primarySilver,
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -957,17 +957,17 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: AppTheme.gold.withOpacity(0.1),
+              color: AppTheme.primarySilver.withOpacity(0.1),
               shape: BoxShape.circle,
               border: Border.all(
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
                 width: 2,
               ),
             ),
             child: Center(
               child: Icon(
                 step['icon'] as IconData,
-                color: AppTheme.gold,
+                color: AppTheme.primarySilver,
                 size: 36,
               ),
             ),
@@ -1032,7 +1032,7 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
                 Container(
                   width: 60,
                   height: 2,
-                  color: AppTheme.gold,
+                  color: AppTheme.primarySilver,
                   margin: const EdgeInsets.only(bottom: 24),
                 ),
                 LayoutBuilder(
