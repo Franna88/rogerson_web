@@ -187,7 +187,7 @@ class _ContactScreenState extends State<ContactScreen> {
         _buildContactItem(
           icon: Icons.email_outlined,
           title: "Email Address",
-          detail: "contact@drmorgan.com",
+          detail: "contact@nathanrogerson.com",
         ),
         const SizedBox(height: 24),
         _buildContactItem(
@@ -333,7 +333,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            "Complete the form below to request a confidential consultation with Dr. Morgan.",
+            "Complete the form below to request a confidential consultation with Nathan Rogerson.",
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 15,
@@ -680,7 +680,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
           const SizedBox(height: 16),
           Text(
-            "Your consultation request has been received. Dr. Morgan's office will contact you within 24 hours to schedule your appointment.",
+            "Your consultation request has been received. Nathan Rogerson's office will contact you within 24 hours to schedule your appointment.",
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 16,
@@ -730,7 +730,7 @@ class _ContactScreenState extends State<ContactScreen> {
               ),
               const SizedBox(height: 24),
               Text(
-                "Dr. Morgan maintains the highest standards of confidentiality and discretion. All sessions and client information are protected by both legal confidentiality requirements and state-of-the-art security measures.",
+                "Nathan Rogerson maintains the highest standards of confidentiality and discretion. All sessions and client information are protected by both legal confidentiality requirements and state-of-the-art security measures.",
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,

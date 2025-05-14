@@ -144,23 +144,10 @@ class AboutScreen extends StatelessWidget {
           aspectRatio: 3 / 4,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
+            child: Image.asset(
+              'images/clientImg.jpg',
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  color: AppTheme.lightSilver,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                          : null,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppTheme.gold),
-                    ),
-                  ),
-                );
-              },
+              
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   decoration: BoxDecoration(
@@ -259,7 +246,7 @@ class AboutScreen extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               const Text(
-                "dr.morgan@premiumpsychology.com",
+                "contact@nathanrogerson.com",
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
@@ -286,7 +273,7 @@ class AboutScreen extends StatelessWidget {
             children: [
               SectionTitle(
                 title: AppConstants.qualificationsTitle,
-                subtitle: "Dr. Morgan brings world-class credentials and specialized expertise to her practice, ensuring clients receive the highest standard of psychological care.",
+                subtitle: "Nathan Rogerson brings world-class credentials and specialized expertise to his practice, ensuring clients receive the highest standard of psychological care.",
                 centerAlign: true,
               ),
               const SizedBox(height: 60),
@@ -564,7 +551,7 @@ class AboutScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  "Schedule your private consultation to explore how Dr. Morgan's expertise can support your psychological wellbeing and professional success.",
+                  "Schedule your private consultation to explore how Nathan Rogerson's expertise can support your psychological wellbeing and professional success.",
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 18,

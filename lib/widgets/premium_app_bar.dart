@@ -280,7 +280,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                         ),
                         const SizedBox(width: 12),
                         Text(
-                          "contact@drmorgan.com",
+                          "contact@nathanrogerson.com",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 15,

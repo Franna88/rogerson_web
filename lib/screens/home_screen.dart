@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   // List of testimonials for the carousel
   final List<Map<String, String>> _testimonials = [
     {
-      'text': "Dr. Morgan's approach to executive psychology has been transformative for my leadership style. Her insights have helped me navigate complex business decisions with greater clarity and purpose.",
+      'text': "Nathan Rogerson's approach to executive psychology has been transformative for my leadership style. His insights have helped me navigate complex business decisions with greater clarity and purpose.",
       'author': "Richard J. Hartman",
       'position': "CEO, Hartman Industries"
     },
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       'position': "CFO, Global Ventures"
     },
     {
-      'text': "Working with Dr. Morgan on relationship coaching has given me tools to balance my demanding career with meaningful personal connections. The results have been nothing short of extraordinary.",
+      'text': "Working with Nathan Rogerson on relationship coaching has given me tools to balance my demanding career with meaningful personal connections. The results have been nothing short of extraordinary.",
       'author': "Jonathan Blackwell",
       'position': "Managing Director, Blackwell Partners"
     },
@@ -759,7 +759,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     constraints: const BoxConstraints(maxWidth: 700),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "Schedule your confidential consultation to discover how Dr. Morgan's premium psychological services can help you achieve exceptional mental wellbeing and performance.",
+                      "Schedule your confidential consultation to discover how Nathan Rogerson's premium psychological services can help you achieve exceptional mental wellbeing and performance.",
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: isMobile ? 16 : 18, // Smaller font on mobile
