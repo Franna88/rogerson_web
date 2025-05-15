@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
 import 'screens/home_screen.dart';
 import 'screens/about_screen.dart';
 import 'screens/services_screen.dart';
@@ -7,9 +9,34 @@ import 'screens/blog_screen.dart';
 import 'theme/app_theme.dart';
 import 'constants/app_constants.dart';
 import 'widgets/premium_app_bar.dart';
+import 'widgets/scroll_reveal_widget.dart';
+import 'utils/gold_foil_effect.dart';
 
-void main() {
+// Global variable to hold the preloaded gold foil image
+ui.Image? goldFoilImage;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Preload the gold foil image
+  await _preloadGoldFoilImage();
+  
   runApp(const MyApp());
+}
+
+Future<void> _preloadGoldFoilImage() async {
+  try {
+    final ByteData data = await rootBundle.load('images/gold_foil.jpg');
+    final ui.Codec codec = await ui.instantiateImageCodec(
+      data.buffer.asUint8List(),
+      targetWidth: 1024,
+    );
+    final ui.FrameInfo frameInfo = await codec.getNextFrame();
+    goldFoilImage = frameInfo.image;
+    print('Gold foil image preloaded successfully');
+  } catch (e) {
+    print('Error preloading gold foil image: $e');
+  }
 }
 
 class MyApp extends StatelessWidget {

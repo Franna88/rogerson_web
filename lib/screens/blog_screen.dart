@@ -7,6 +7,7 @@ import '../widgets/blog_widgets/featured_resource_card.dart';
 import '../widgets/blog_widgets/article_card.dart';
 import '../widgets/blog_widgets/video_card.dart';
 import '../widgets/blog_widgets/quick_tip_card.dart';
+import '../utils/gold_text_effect.dart';
 
 class HoverCard extends StatefulWidget {
   final Widget child;
@@ -127,16 +128,19 @@ class _BlogScreenState extends State<BlogScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                AppConstants.blogTitle,
-                style: TextStyle(
-                  fontFamily: 'Playfair Display',
-                  fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.white,
-                  letterSpacing: 1.0,
+              child: GoldTextEffect(
+                scale: 0.4,
+                child: Text(
+                  AppConstants.blogTitle,
+                  style: TextStyle(
+                    fontFamily: 'Playfair Display',
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.white,
+                    letterSpacing: 1.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 16),

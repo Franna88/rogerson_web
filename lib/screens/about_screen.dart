@@ -3,6 +3,7 @@ import '../constants/app_constants.dart';
 import '../theme/app_theme.dart';
 import '../widgets/premium_button.dart';
 import '../widgets/section_title.dart';
+import '../utils/gold_text_effect.dart';
 
 class AboutScreen extends StatelessWidget {
   final Function(int) onNavigate;
@@ -59,16 +60,19 @@ class AboutScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                AppConstants.aboutTitle,
-                style: TextStyle(
-                  fontFamily: 'Playfair Display',
-                  fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.white,
-                  letterSpacing: 1.0,
+              child: GoldTextEffect(
+                scale: 0.4,
+                child: Text(
+                  AppConstants.aboutTitle,
+                  style: TextStyle(
+                    fontFamily: 'Playfair Display',
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.white,
+                    letterSpacing: 1.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 16),
@@ -196,13 +200,16 @@ class AboutScreen extends StatelessWidget {
           color: AppTheme.gold,
           margin: const EdgeInsets.only(bottom: 24),
         ),
-        HoverHighlightText(
-          text: "About Me",
-          style: const TextStyle(
-            fontFamily: 'Playfair Display',
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: AppTheme.darkText,
+        GoldTextEffect(
+          scale: 0.4,
+          child: HoverHighlightText(
+            text: "About Me",
+            style: const TextStyle(
+              fontFamily: 'Playfair Display',
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: AppTheme.darkText,
+            ),
           ),
         ),
         const SizedBox(height: 24),
@@ -409,16 +416,19 @@ class AboutScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  AppConstants.approachTitle,
-                  style: TextStyle(
-                    fontFamily: 'Playfair Display',
-                    fontSize: MediaQuery.of(context).size.width < 600 ? 28 : 36,
-                    fontWeight: FontWeight.bold,
-                    color: AppTheme.white,
-                    letterSpacing: 0.5,
+                child: GoldTextEffect(
+                  scale: 0.4,
+                  child: Text(
+                    AppConstants.approachTitle,
+                    style: TextStyle(
+                      fontFamily: 'Playfair Display',
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 28 : 36,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.white,
+                      letterSpacing: 0.5,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(height: 40),
@@ -534,15 +544,18 @@ class AboutScreen extends StatelessWidget {
                   builder: (context, constraints) {
                     final screenWidth = constraints.maxWidth;
                     
-                    return Text(
-                      "Ready to experience transformative\npsychological care?",
-                      style: TextStyle(
-                        fontFamily: 'Playfair Display',
-                        fontSize: screenWidth < 600 ? 26 : 32,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.darkText,
+                    return GoldTextEffect(
+                      scale: 0.4,
+                      child: Text(
+                        "Ready to experience transformative\npsychological care?",
+                        style: TextStyle(
+                          fontFamily: 'Playfair Display',
+                          fontSize: screenWidth < 600 ? 26 : 32,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.darkText,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     );
                   },
                 ),

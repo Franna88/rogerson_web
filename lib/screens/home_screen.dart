@@ -5,6 +5,9 @@ import '../theme/app_theme.dart';
 import '../widgets/premium_button.dart';
 import '../widgets/premium_card.dart';
 import '../widgets/section_title.dart';
+import '../widgets/scroll_reveal_widget.dart';
+import '../utils/gold_foil_effect.dart';
+import '../utils/gold_text_effect.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(int) onNavigate;
@@ -47,6 +50,25 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   ];
   
   int _currentTestimonial = 0;
+  
+  // Service cards data
+  final List<Map<String, dynamic>> serviceCards = [
+    {
+      'icon': Icons.psychology,
+      'title': 'Executive Psychology',
+      'description': 'Specialized therapy designed for high-performing professionals managing significant workplace stressors.',
+    },
+    {
+      'icon': Icons.handshake,
+      'title': 'Relationship Coaching',
+      'description': 'Strategic guidance for building and maintaining fulfilling relationships despite demanding careers.',
+    },
+    {
+      'icon': Icons.spa,
+      'title': 'Stress Management',
+      'description': 'Evidence-based techniques to transform stress into productivity and maintain optimal performance.',
+    },
+  ];
   
   @override
   void initState() {
@@ -148,12 +170,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Transform.translate(
               offset: Offset(0, parallaxOffset * 0.2),
               child: Opacity(
-                opacity: 0.1,
+                opacity: 0.7,
                 child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=500&auto=format&fit=crop'),
-                      repeat: ImageRepeat.repeat,
+                      image: AssetImage('images/hero_img.jpg'),fit: BoxFit.fill
+                       //image: AssetImage('images/hero_img2.jpg'),fit: BoxFit.fill
+                      
                     ),
                   ),
                 ),
@@ -212,17 +235,36 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               color: AppTheme.gold,
                               margin: const EdgeInsets.only(bottom: 24),
                             ),
-                            Text(
-                              AppConstants.homeHeroTitle,
-                              style: TextStyle(
-                                fontFamily: 'Playfair Display',
-                                fontSize: isMobile ? 32 : (isTablet ? 42 : 48), // Further reduced size for mobile
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.gold,
-                                letterSpacing: 1.0,
-                                height: 1.2, // Tighter line height to avoid overflow
+                            GoldTextEffect(
+                              scale: 0.5,
+                              child: Text(
+                                "Nathan Rogerson",
+                                style: TextStyle(
+                                  fontFamily: 'Playfair Display',
+                                  fontSize: isMobile ? 42 : (isTablet ? 52 : 60), // Larger size for client name
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.gold,
+                                  letterSpacing: 1.2,
+                                  height: 1.1, // Tighter line height
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 16),
+                            GoldTextEffect(
+                              scale: 0.5,
+                              child: Text(
+                                AppConstants.homeHeroTitle,
+                                style: TextStyle(
+                                  fontFamily: 'Playfair Display',
+                                  fontSize: isMobile ? 32 : (isTablet ? 42 : 48), // Further reduced size for mobile
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.gold,
+                                  letterSpacing: 1.0,
+                                  height: 1.2, // Tighter line height to avoid overflow
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             SizedBox(height: isMobile ? 16 : 24), // Reduced space for mobile
                             Container(
@@ -262,9 +304,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                       PremiumButton(
                                         text: AppConstants.ctaButtonText,
                                         onPressed: () {
-                                          widget.onNavigate(3); // Navigate to Contact
+                                          widget.onNavigate(4); // Navigate to Contact
                                         },
                                         width: double.infinity, // Full width on mobile
+                                        enableIntroAnimation: false,
+                                        useGoldFoil: true,
                                       ),
                                       const SizedBox(height: 16),
                                       PremiumButton(
@@ -274,6 +318,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                           widget.onNavigate(2); // Navigate to Services
                                         },
                                         width: double.infinity, // Full width on mobile
+                                        enableIntroAnimation: false,
                                       ),
                                     ],
                                   );
@@ -285,8 +330,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                       PremiumButton(
                                         text: AppConstants.ctaButtonText,
                                         onPressed: () {
-                                          widget.onNavigate(3); // Navigate to Contact
+                                          widget.onNavigate(4); // Navigate to Contact
                                         },
+                                        enableIntroAnimation: false,
+                                        useGoldFoil: true,
                                       ),
                                       const SizedBox(width: 24),
                                       PremiumButton(
@@ -295,6 +342,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                         onPressed: () {
                                           widget.onNavigate(2); // Navigate to Services
                                         },
+                                        enableIntroAnimation: false,
                                       ),
                                     ],
                                   );
@@ -308,7 +356,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(
                                   onTap: () {
-                                    widget.onNavigate(2); // Navigate to Services section
+                                    // Scroll to Services section
+                                    _scrollController.animateTo(
+                                      MediaQuery.of(context).size.height,
+                                      duration: const Duration(milliseconds: 800),
+                                      curve: Curves.easeInOut,
+                                    );
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(12),
@@ -343,254 +396,118 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   }
 
   Widget _buildServicesSection() {
-    // Ensure the section is always visible with a minimum opacity
-    return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: 0.3, end: 1.0),
-      duration: const Duration(milliseconds: 1200),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        return Transform.translate(
-          offset: Offset(0, 20 * (1 - value)), // Reduced slide distance
-          child: Opacity(
-            opacity: value, // Will never be less than 0.3 due to tween start value
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
-              color: AppTheme.white,
-              child: Column(
-                children: [
-                  SectionTitle(
-                    title: AppConstants.servicesTitle,
-                    subtitle: AppConstants.servicesSubtitle,
-                    centerAlign: true,
+    final bool isMobile = MediaQuery.of(context).size.width < 600;
+    
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: AppTheme.white,
+      child: Column(
+        children: [
+          SectionTitle(
+            title: AppConstants.servicesTitle,
+            subtitle: AppConstants.servicesSubtitle,
+            centerAlign: true,
+            startVisible: true,
+          ),
+          const SizedBox(height: 40),
+          Wrap(
+            spacing: 20,
+            runSpacing: 20,
+            alignment: WrapAlignment.center,
+            children: [
+              for (int i = 0; i < serviceCards.length; i++)
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width < 600 ? double.infinity : 320,
+                    minWidth: MediaQuery.of(context).size.width < 600 ? double.infinity : 280,
                   ),
-                  const SizedBox(height: 40),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      final screenWidth = constraints.maxWidth;
-                      final isMobile = screenWidth < 768;
-                      final isTablet = screenWidth >= 768 && screenWidth < 1200;
-                      
-                      if (isMobile) {
-                        return Column(
-                          children: _buildServiceCardsWithAnimation(
-                            scrollable: false, 
-                            maxCards: 3,
-                          ),
-                        );
-                      } else if (isTablet) {
-                        return Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _buildServiceCardsWithAnimation(
-                                scrollable: false, 
-                                maxCards: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 40),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildServiceCardWithAnimation(
-                                  index: 2, 
-                                  scrollable: false,
-                                  delay: 0.4,
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      } else {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: _buildServiceCardsWithAnimation(
-                            scrollable: false, 
-                            maxCards: 3,
-                          ),
-                        );
-                      }
-                    },
+                  child: ScrollRevealWidget(
+                    direction: RevealDirection.fromBottom,
+                    delay: Duration(milliseconds: 100 * i),
+                    startVisible: true,
+                    child: PremiumCard(
+                      title: serviceCards[i]['title']!,
+                      description: serviceCards[i]['description']!,
+                      icon: serviceCards[i]['icon']!,
+                      onTap: () {
+                        widget.onNavigate(2); // Navigate to services screen
+                      },
+                    ),
                   ),
-                  const SizedBox(height: 60),
-                  PremiumButton(
-                    text: "View All Services",
-                    onPressed: () {
-                      widget.onNavigate(2); // Navigate to Services
-                    },
-                  ),
-                ],
-              ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 60),
+          ScrollRevealWidget(
+            direction: RevealDirection.fromBottom,
+            delay: const Duration(milliseconds: 400),
+            startVisible: true,
+            child: PremiumButton(
+              text: 'Explore All Services',
+              onPressed: () {
+                widget.onNavigate(2); // Navigate to services screen
+              },
+              isOutlined: true,
+              useGoldFoil: true,
+              enableIntroAnimation: false,
             ),
           ),
-        );
-      },
-    );
-  }
-
-  List<Widget> _buildServiceCardsWithAnimation({
-    required bool scrollable,
-    required int maxCards,
-  }) {
-    final services = [
-      {
-        'icon': Icons.psychology,
-        'title': AppConstants.executiveTherapyTitle,
-        'description': AppConstants.executiveTherapyDescription,
-      },
-      {
-        'icon': Icons.handshake,
-        'title': AppConstants.relationshipCoachingTitle,
-        'description': AppConstants.relationshipCoachingDescription,
-      },
-      {
-        'icon': Icons.spa,
-        'title': AppConstants.stressManagementTitle,
-        'description': AppConstants.stressManagementDescription,
-      },
-    ];
-
-    return List.generate(
-      maxCards > services.length ? services.length : maxCards,
-      (index) => _buildServiceCardWithAnimation(
-        index: index,
-        scrollable: scrollable,
-        delay: index * 0.2, // Staggered delay
+        ],
       ),
     );
   }
 
-  Widget _buildServiceCardWithAnimation({
-    required int index,
-    required bool scrollable,
-    required double delay,
-  }) {
-    final services = [
-      {
-        'icon': Icons.psychology,
-        'title': AppConstants.executiveTherapyTitle,
-        'description': AppConstants.executiveTherapyDescription,
-      },
-      {
-        'icon': Icons.handshake,
-        'title': AppConstants.relationshipCoachingTitle,
-        'description': AppConstants.relationshipCoachingDescription,
-      },
-      {
-        'icon': Icons.spa,
-        'title': AppConstants.stressManagementTitle,
-        'description': AppConstants.stressManagementDescription,
-      },
-    ];
-
-    final service = services[index];
-
-    // Simplified animation that ensures cards are always visible
-    return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: 0.0, end: 1.0),
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        // Always start with a minimum opacity to ensure visibility
-        final animationValue = (value - delay).clamp(0.3, 1.0);
-            
-        return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: scrollable ? 12 : 16,
-            vertical: scrollable ? 8 : 16,
-          ),
-          child: Transform.translate(
-            offset: Offset(0, 20 * (1 - animationValue)),
-            child: Opacity(
-              opacity: animationValue,
-              child: PremiumCard(
-                icon: service['icon'] as IconData,
-                title: service['title'] as String,
-                description: service['description'] as String,
-                onTap: () {
-                  widget.onNavigate(2); // Navigate to Services
-                },
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _buildTestimonialSection() {
-    // Ensure the section is always visible with a minimum opacity
-    return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: 0.3, end: 1.0),
-      duration: const Duration(milliseconds: 1200),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        return Transform.translate(
-          offset: Offset(0, 20 * (1 - value)), // Reduced slide distance
-          child: Opacity(
-            opacity: value, // Will never be less than 0.3 due to tween start value
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.width < 600 ? 60 : 100, // Less padding on mobile
-                horizontal: 24,
-              ),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppTheme.charcoal.withOpacity(0.9),
-                    AppTheme.charcoal,
-                  ],
+    final bool isMobile = MediaQuery.of(context).size.width < 600;
+    
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        vertical: isMobile ? 60 : 100, // Less padding on mobile
+        horizontal: 24,
+      ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppTheme.charcoal.withOpacity(0.9),
+            AppTheme.charcoal,
+          ],
+        ),
+      ),
+      child: Column(
+        children: [
+          Icon(
+            Icons.format_quote,
+            color: AppTheme.gold,
+            size: 60,
+          ),
+          const SizedBox(height: 40),
+          
+          // Testimonial carousel
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 800),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0.25, 0.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
                 ),
-              ),
-              child: Column(
-                children: [
-                  TweenAnimationBuilder<double>(
-                    tween: Tween<double>(begin: 0.8, end: 1.0),
-                    duration: const Duration(milliseconds: 3000),
-                    curve: Curves.easeInOut,
-                    builder: (context, value, child) {
-                      return Transform.scale(
-                        scale: value,
-                        child: const Icon(
-                          Icons.format_quote,
-                          color: AppTheme.gold,
-                          size: 60,
-                        ),
-                      );
-                    },
-                    onEnd: () => setState(() {}),
-                  ),
-                  const SizedBox(height: 40),
-                  
-                  // Testimonial carousel
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 800),
-                    transitionBuilder: (Widget child, Animation<double> animation) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: SlideTransition(
-                          position: Tween<Offset>(
-                            begin: const Offset(0.25, 0.0),
-                            end: Offset.zero,
-                          ).animate(animation),
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: _buildTestimonialContent(
-                      _testimonials[_currentTestimonial],
-                      key: ValueKey<int>(_currentTestimonial),
-                    ),
-                  ),
-                ],
-              ),
+              );
+            },
+            child: _buildTestimonialContent(
+              _testimonials[_currentTestimonial],
+              key: ValueKey<int>(_currentTestimonial),
             ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
   
@@ -603,17 +520,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         Container(
           constraints: const BoxConstraints(maxWidth: 900),
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            testimonial['text']!,
-            style: TextStyle(
-              fontFamily: 'Playfair Display',
-              fontSize: isMobile ? 22 : 28, // Smaller font on mobile
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.italic,
-              color: AppTheme.white,
-              height: 1.6,
+          child: GoldTextEffect(
+            scale: 0.3,
+            child: Text(
+              testimonial['text']!,
+              style: TextStyle(
+                fontFamily: 'Playfair Display',
+                fontSize: isMobile ? 22 : 28, // Smaller font on mobile
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.italic,
+                color: AppTheme.white,
+                height: 1.6,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
         const SizedBox(height: 40),
@@ -686,115 +606,134 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   }
 
   Widget _buildCTASection() {
-    // Ensure the section is always visible with a minimum opacity
-    return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: 0.3, end: 1.0),
-      duration: const Duration(milliseconds: 1200),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        final bool isMobile = MediaQuery.of(context).size.width < 600;
-        
-        return Transform.translate(
-          offset: Offset(0, 20 * (1 - value)), // Reduced slide distance
-          child: Opacity(
-            opacity: value, // Will never be less than 0.3 due to tween start value
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: 24, 
-                vertical: isMobile ? 60 : 80, // Less padding on mobile
-              ),
-              decoration: BoxDecoration(
-                color: AppTheme.white,
-                border: Border(
-                  top: BorderSide(
-                    color: AppTheme.silver.withOpacity(0.3),
-                    width: 1,
-                  ),
+    final bool isMobile = MediaQuery.of(context).size.width < 600;
+    
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: 24, 
+        vertical: isMobile ? 60 : 80,
+      ),
+      decoration: BoxDecoration(
+        color: AppTheme.white,
+        border: Border(
+          top: BorderSide(
+            color: AppTheme.silver.withOpacity(0.3),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Column(
+        children: [
+          ScrollRevealWidget(
+            direction: RevealDirection.fromBottom,
+            startVisible: true,
+            child: GoldTextEffect(
+              scale: 0.4,
+              child: Text(
+                "Ready to Begin Your Journey?",
+                style: TextStyle(
+                  fontFamily: 'Playfair Display',
+                  fontSize: isMobile ? 28 : 36,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.darkText,
+                  letterSpacing: 0.5,
                 ),
-              ),
-              child: Column(
-                children: [
-                  // Animated gold divider
-                  TweenAnimationBuilder<double>(
-                    tween: Tween<double>(begin: 0, end: 60),
-                    duration: const Duration(milliseconds: 1500),
-                    curve: Curves.easeOut,
-                    builder: (context, width, child) {
-                      return Container(
-                        width: width,
-                        height: 2,
-                        margin: const EdgeInsets.only(bottom: 24),
-                        color: AppTheme.gold,
-                      );
-                    },
-                  ),
-                  // Animated title with subtle hover effect
-                  TweenAnimationBuilder<double>(
-                    tween: Tween<double>(begin: 1.0, end: 1.02),
-                    duration: const Duration(milliseconds: 3000),
-                    curve: Curves.easeInOut,
-                    builder: (context, scale, child) {
-                      return Transform.scale(
-                        scale: 1.0 + (scale - 1.0) * 0.02,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "Ready to Begin Your Journey?",
-                            style: TextStyle(
-                              fontFamily: 'Playfair Display',
-                              fontSize: isMobile ? 30 : 36, // Smaller font on mobile
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.darkText,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      );
-                    },
-                    onEnd: () => setState(() {}),
-                  ),
-                  const SizedBox(height: 24),
-                  Container(
-                    constraints: const BoxConstraints(maxWidth: 700),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      "Schedule your confidential consultation to discover how Nathan Rogerson's premium psychological services can help you achieve exceptional mental wellbeing and performance.",
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: isMobile ? 16 : 18, // Smaller font on mobile
-                        color: AppTheme.darkText.withOpacity(0.8),
-                        height: 1.5,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  // Add hover animation to the button
-                  TweenAnimationBuilder<double>(
-                    tween: Tween<double>(begin: 0, end: 10),
-                    duration: const Duration(milliseconds: 2000),
-                    curve: Curves.easeInOut,
-                    builder: (context, value, child) {
-                      return Transform.translate(
-                        offset: Offset(0, math.sin(value) * 1),
-                        child: PremiumButton(
-                          text: AppConstants.ctaButtonText,
-                          width: isMobile ? double.infinity : 200, // Use concrete value instead of null
-                          onPressed: () {
-                            widget.onNavigate(3); // Navigate to Contact
-                          },
-                        ),
-                      );
-                    },
-                    onEnd: () => setState(() {}),
-                  ),
-                ],
+                textAlign: TextAlign.center,
               ),
             ),
           ),
-        );
-      },
+          const SizedBox(height: 24),
+          ScrollRevealWidget(
+            direction: RevealDirection.fromBottom,
+            delay: const Duration(milliseconds: 200),
+            startVisible: true,
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 700),
+              child: Text(
+                "Schedule your confidential consultation to discover how our premium psychological services can help you achieve exceptional mental wellbeing and performance.",
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: isMobile ? 16 : 18,
+                  color: AppTheme.darkText.withOpacity(0.8),
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          const SizedBox(height: 40),
+          if (isMobile)
+            // Stack buttons vertically on mobile
+            Column(
+              children: [
+                ScrollRevealWidget(
+                  direction: RevealDirection.fromBottom,
+                  delay: const Duration(milliseconds: 300),
+                  startVisible: true,
+                  child: PremiumButton(
+                    text: 'Schedule Consultation',
+                    width: double.infinity,
+                    onPressed: () {
+                      widget.onNavigate(4); // Navigate to contact screen
+                    },
+                    useGoldFoil: true,
+                    enableIntroAnimation: false,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ScrollRevealWidget(
+                  direction: RevealDirection.fromBottom,
+                  delay: const Duration(milliseconds: 400),
+                  startVisible: true,
+                  child: PremiumButton(
+                    text: 'Learn More',
+                    width: double.infinity,
+                    onPressed: () {
+                      widget.onNavigate(1); // Navigate to about screen
+                    },
+                    isOutlined: true,
+                    enableIntroAnimation: false,
+                  ),
+                ),
+              ],
+            )
+          else
+            // Use row layout on larger screens
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ScrollRevealWidget(
+                  direction: RevealDirection.fromBottom,
+                  delay: const Duration(milliseconds: 300),
+                  startVisible: true,
+                  child: PremiumButton(
+                    text: 'Schedule Consultation',
+                    onPressed: () {
+                      widget.onNavigate(4); // Navigate to contact screen
+                    },
+                    useGoldFoil: true,
+                    enableIntroAnimation: false,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                ScrollRevealWidget(
+                  direction: RevealDirection.fromBottom,
+                  delay: const Duration(milliseconds: 400),
+                  startVisible: true,
+                  child: PremiumButton(
+                    text: 'Learn More',
+                    onPressed: () {
+                      widget.onNavigate(1); // Navigate to about screen
+                    },
+                    isOutlined: true,
+                    enableIntroAnimation: false,
+                  ),
+                ),
+              ],
+            ),
+        ],
+      ),
     );
   }
 

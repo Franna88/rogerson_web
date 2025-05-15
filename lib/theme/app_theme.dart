@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   // Primary colors
   static const Color gold = Color(0xFFD4AF37);
-  static const Color lightGold = Color(0xFFF5E7A9);
+  static const Color lightGold = Color.fromRGBO(87, 55, 13, 1);
+  // Color(0xFFF5E7A9);
   static const Color silver = Color(0xFFC0C0C0);
   static const Color lightSilver = Color(0xFFE6E6E6);
   

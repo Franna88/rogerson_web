@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../constants/app_constants.dart';
+import 'animated_gold_underline.dart';
+import '../utils/gold_text_effect.dart';
 
 class PremiumAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isScrolled;
@@ -96,23 +98,28 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
           centerTitle: !isDesktop,
           title: Row(
             children: [
-              Text(
-                AppConstants.appName,
-                style: TextStyle(
-                  color: _opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white,
-                  fontFamily: 'Playfair Display',
-                  fontWeight: FontWeight.bold,
-                  fontSize: isDesktop ? 24 : 20,
-                  // Add text shadow to ensure visibility on light backgrounds when not scrolled
-                  shadows: _opacityAnimation.value > 0.1 
-                    ? [] 
-                    : [
-                        Shadow(
-                          offset: const Offset(0, 1),
-                          blurRadius: 3.0,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
+              GoldTextEffect(
+                scale: 0.3,
+                enabled: _opacityAnimation.value > 0.1, // Enable gold effect when scrolled
+                child: Text(
+                  AppConstants.appName,
+                  style: TextStyle(
+                    color: _opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white,
+                    fontFamily: 'Playfair Display',
+                    fontWeight: FontWeight.bold,
+                    fontSize: isDesktop ? 24 : 20,
+                    letterSpacing: 1,
+                    // Add text shadow to ensure visibility on light backgrounds when not scrolled
+                    shadows: _opacityAnimation.value > 0.1 
+                      ? [] 
+                      : [
+                          Shadow(
+                            offset: const Offset(0, 1),
+                            blurRadius: 3.0,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ],
+                  ),
                 ),
               ),
               if (isDesktop) const SizedBox(width: 8),
@@ -215,13 +222,16 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Menu",
-                      style: TextStyle(
-                        fontFamily: 'Playfair Display',
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.darkText,
+                    GoldTextEffect(
+                      scale: 0.3,
+                      child: Text(
+                        "Menu",
+                        style: TextStyle(
+                          fontFamily: 'Playfair Display',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.darkText,
+                        ),
                       ),
                     ),
                     IconButton(
@@ -261,13 +271,16 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Contact",
-                      style: TextStyle(
-                        fontFamily: 'Playfair Display',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.darkText,
+                    GoldTextEffect(
+                      scale: 0.3,
+                      child: Text(
+                        "Contact",
+                        style: TextStyle(
+                          fontFamily: 'Playfair Display',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.darkText,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -383,58 +396,53 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
 
   List<Widget> _buildDesktopMenu() {
     return [
-      ..._buildNavigationItems(),
+      _buildMenuItem('Home', 0),
+      const SizedBox(width: 32),
+      _buildMenuItem('About', 1),
+      const SizedBox(width: 32),
+      _buildMenuItem('Services', 2),
+      const SizedBox(width: 32),
+      _buildMenuItem('Blog', 3),
+      const SizedBox(width: 32),
+      _buildMenuItem('Contact', 4),
       const SizedBox(width: 24),
     ];
   }
 
-  List<Widget> _buildNavigationItems() {
-    final navItems = [
-      AppConstants.homeLabel,
-      AppConstants.aboutLabel,
-      AppConstants.servicesLabel,
-      AppConstants.blogLabel,
-      AppConstants.contactLabel,
-    ];
-
-    return List.generate(navItems.length, (index) {
-      final isSelected = widget.selectedIndex == index;
-      return _buildNavItem(navItems[index], index, isSelected);
-    });
-  }
-
-  Widget _buildNavItem(String label, int index, bool isSelected) {
-    return InkWell(
-      onTap: () {
-        widget.onTabSelected(index);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isSelected ? AppTheme.gold : Colors.transparent,
-              width: 2,
+  Widget _buildMenuItem(String title, int index) {
+    final bool isSelected = widget.selectedIndex == index;
+    final Color textColor = _opacityAnimation.value > 0.1 
+        ? AppTheme.darkText 
+        : AppTheme.white;
+    
+    return AnimatedGoldUnderline(
+      isActive: isSelected,
+      underlineColor: AppTheme.gold,
+      child: InkWell(
+        onTap: () => widget.onTabSelected(index),
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          child: Text(
+            title,
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 15,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              color: textColor,
+              letterSpacing: 0.5,
+              shadows: _opacityAnimation.value > 0.1 
+                ? [] 
+                : [
+                    Shadow(
+                      offset: const Offset(0, 1),
+                      blurRadius: 3.0,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
             ),
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: isSelected ? AppTheme.gold : (_opacityAnimation.value > 0.1 ? AppTheme.darkText : AppTheme.white),
-            fontFamily: 'Montserrat',
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-            fontSize: 16,
-            // Add text shadow to ensure visibility on light backgrounds when not scrolled
-            shadows: _opacityAnimation.value > 0.1 
-              ? [] 
-              : [
-                  Shadow(
-                    offset: const Offset(0, 1),
-                    blurRadius: 3.0,
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                ],
           ),
         ),
       ),

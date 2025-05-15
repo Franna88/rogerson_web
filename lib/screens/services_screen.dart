@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rogerson/utils/gold_text_effect.dart';
 import '../constants/app_constants.dart';
 import '../theme/app_theme.dart';
 import '../widgets/premium_button.dart';
@@ -218,16 +219,19 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                AppConstants.servicesTitle,
-                style: TextStyle(
-                  fontFamily: 'Playfair Display',
-                  fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.white,
-                  letterSpacing: 1.0,
+              child: GoldTextEffect(
+                scale: 0.4,
+                child: Text(
+                  AppConstants.servicesTitle,
+                  style: TextStyle(
+                    fontFamily: 'Playfair Display',
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.white,
+                    letterSpacing: 1.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 16),

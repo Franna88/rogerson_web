@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants/app_constants.dart';
 import '../theme/app_theme.dart';
 import '../widgets/premium_button.dart';
+import '../utils/gold_text_effect.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -71,16 +72,19 @@ class _ContactScreenState extends State<ContactScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                AppConstants.contactTitle,
-                style: TextStyle(
-                  fontFamily: 'Playfair Display',
-                  fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48, // Smaller font on smaller screens
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.white,
-                  letterSpacing: 1.0,
+              child: GoldTextEffect(
+                scale: 0.4,
+                child: Text(
+                  AppConstants.contactTitle,
+                  style: TextStyle(
+                    fontFamily: 'Playfair Display',
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 36 : 48, // Smaller font on smaller screens
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.white,
+                    letterSpacing: 1.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 16),
