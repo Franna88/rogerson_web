@@ -1,7 +1,7 @@
 class AppConstants {
   // App Info
   static const String appName = "Nathan Rogerson";
-  static const String appTagline = "Premium Psychological Services for Elite Professionals";
+  static const String appTagline = "Premium Psychological Services";
   
   // Navigation
   static const String homeLabel = "Home";
@@ -11,7 +11,7 @@ class AppConstants {
   static const String blogLabel = "Resources";
   
   // Home Page
-  static const String homeHeroTitle = "Elite Psychological Services";
+  static const String homeHeroTitle = "Psychological Services";
   static const String homeHeroSubtitle = "Tailored to meet the unique needs of high-profile individuals and business leaders";
   static const String homeIntroText = "Experience premium psychological care designed exclusively for discerning clients who demand excellence, privacy, and results.";
   static const String ctaButtonText = "Schedule a Consultation";

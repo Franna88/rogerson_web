@@ -293,7 +293,7 @@ class _ServicesScreenState extends State<ServicesScreen> with TickerProviderStat
                 child: _buildServiceDetail(
                   title: AppConstants.executiveTherapyTitle,
                   description: AppConstants.executiveTherapyDescription,
-                  image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+                  image: 'https://plus.unsplash.com/premium_photo-1665990294874-36ff13d2b66d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y291bnNlbGxpbmd8ZW58MHx8MHx8fDA%3D',
                   icon: Icons.psychology,
                   benefits: [
                     "Enhanced decision-making clarity under pressure",

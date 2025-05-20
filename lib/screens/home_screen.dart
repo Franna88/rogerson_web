@@ -170,13 +170,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Transform.translate(
               offset: Offset(0, parallaxOffset * 0.2),
               child: Opacity(
-                opacity: 0.7,
+                opacity: 1,
                 child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/hero_img.jpg'),fit: BoxFit.fill
-                       //image: AssetImage('images/hero_img2.jpg'),fit: BoxFit.fill
-                      
+                      image: AssetImage('images/heroImg3.png'),
+                      fit: BoxFit.fill,
+                      colorFilter: ColorFilter.mode(
+                        Color(0x80000000), // 50% opacity black
+                        BlendMode.srcOver,
+                      ),
                     ),
                   ),
                 ),
@@ -268,13 +271,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             SizedBox(height: isMobile ? 16 : 24), // Reduced space for mobile
                             Container(
-                              constraints: const BoxConstraints(maxWidth: 800),
+                              constraints: const BoxConstraints(maxWidth: 720),
                               child: Text(
                                 AppConstants.homeHeroSubtitle,
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: isMobile ? 16 : (isTablet ? 18 : 22), // Further reduced size for mobile
-                                  color: AppTheme.darkText.withOpacity(0.8),
+                                  color: AppTheme.lightText.withOpacity(0.8),
                                   height: 1.4, // Tighter line height to avoid overflow
                                 ),
                                 textAlign: TextAlign.center,
@@ -288,8 +291,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: isMobile ? 14 : (isTablet ? 15 : 18), // Further reduced size for mobile
-                                  color: AppTheme.darkText.withOpacity(0.7),
+                                  color: AppTheme.lightText.withOpacity(0.8),
                                   height: 1.5,
+                                  letterSpacing: 1.1
                                 ),
                                 textAlign: TextAlign.center,
                               ),
