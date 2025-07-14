@@ -336,7 +336,6 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
       AppConstants.homeLabel,
       AppConstants.aboutLabel,
       AppConstants.servicesLabel,
-      AppConstants.blogLabel,
       AppConstants.contactLabel,
     ];
     
@@ -344,7 +343,6 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
       Icons.home_outlined,
       Icons.person_outline,
       Icons.psychology_outlined,
-      Icons.article_outlined,
       Icons.email_outlined,
     ];
 
@@ -402,9 +400,7 @@ class _PremiumAppBarState extends State<PremiumAppBar> with SingleTickerProvider
       const SizedBox(width: 32),
       _buildMenuItem('Services', 2),
       const SizedBox(width: 32),
-      _buildMenuItem('Blog', 3),
-      const SizedBox(width: 32),
-      _buildMenuItem('Contact', 4),
+      _buildMenuItem('Contact', 3),
       const SizedBox(width: 24),
     ];
   }

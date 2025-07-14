@@ -33,19 +33,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   // List of testimonials for the carousel
   final List<Map<String, String>> _testimonials = [
     {
-      'text': "Nathan Rogerson's approach to executive psychology has been transformative for my leadership style. His insights have helped me navigate complex business decisions with greater clarity and purpose.",
+      'text': "Nathan Rogerson's approach to psychology has been transformative for my personal and professional life. His insights have helped me navigate complex decisions with greater clarity and purpose.",
       'author': "Richard J. Hartman",
-      'position': "CEO, Hartman Industries"
+      'position': "Business Owner"
     },
     {
-      'text': "The premium stress management program completely changed how I handle high-pressure situations. I've gained valuable techniques that have improved both my professional performance and personal wellbeing.",
+      'text': "The stress management program completely changed how I handle challenging situations. I've gained valuable techniques that have improved both my work performance and personal wellbeing.",
       'author': "Elizabeth Chen",
-      'position': "CFO, Global Ventures"
+      'position': "Professional"
     },
     {
-      'text': "Working with Nathan Rogerson on relationship coaching has given me tools to balance my demanding career with meaningful personal connections. The results have been nothing short of extraordinary.",
+      'text': "Working with Nathan Rogerson on relationship coaching has given me tools to balance my career with meaningful personal connections. The results have been remarkable.",
       'author': "Jonathan Blackwell",
-      'position': "Managing Director, Blackwell Partners"
+      'position': "Client"
     },
   ];
   
@@ -54,19 +54,64 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   // Service cards data
   final List<Map<String, dynamic>> serviceCards = [
     {
+      'icon': Icons.healing,
+      'title': 'Anxiety & Stress',
+      'description': 'Support and practical techniques to help you manage anxiety and stress in your daily life.',
+    },
+    {
       'icon': Icons.psychology,
-      'title': 'Executive Psychology',
-      'description': 'Specialized therapy designed for high-performing professionals managing significant workplace stressors.',
+      'title': 'Depression',
+      'description': 'Compassionate therapy to help you understand and work through depression, finding hope and renewed purpose.',
     },
     {
-      'icon': Icons.handshake,
-      'title': 'Relationship Coaching',
-      'description': 'Strategic guidance for building and maintaining fulfilling relationships despite demanding careers.',
+      'icon': Icons.battery_alert,
+      'title': 'Burnout',
+      'description': 'Learn to recognize burnout signs and develop strategies to restore your energy and work-life balance.',
     },
     {
-      'icon': Icons.spa,
-      'title': 'Stress Management',
-      'description': 'Evidence-based techniques to transform stress into productivity and maintain optimal performance.',
+      'icon': Icons.health_and_safety,
+      'title': 'Trauma',
+      'description': 'Gentle, trauma-informed therapy to help you process and heal from past experiences.',
+    },
+    {
+      'icon': Icons.favorite_border,
+      'title': 'Grief & Bereavement',
+      'description': 'Supportive counseling to help you navigate the complex journey of loss and grief.',
+    },
+    {
+      'icon': Icons.people_outline,
+      'title': 'Couples Counselling',
+      'description': 'Working together to improve communication, resolve conflicts, and strengthen your relationship.',
+    },
+    {
+      'icon': Icons.family_restroom,
+      'title': 'Family Problems',
+      'description': 'Help for families facing challenges, improving understanding and communication between family members.',
+    },
+    {
+      'icon': Icons.person_outline,
+      'title': 'Adolescent Distress',
+      'description': 'Supporting young people through emotional challenges, identity issues, and life transitions.',
+    },
+    {
+      'icon': Icons.change_circle_outlined,
+      'title': 'Life Changes',
+      'description': 'Guidance through major life transitions, helping you adjust and find new direction.',
+    },
+    {
+      'icon': Icons.balance,
+      'title': 'Bipolar Mood Disorder',
+      'description': 'Professional support to help manage bipolar disorder and maintain emotional stability.',
+    },
+    {
+      'icon': Icons.accessibility_new,
+      'title': 'Disability & Aging',
+      'description': 'Compassionate support for adapting to changes in ability and the aging process.',
+    },
+    {
+      'icon': Icons.medical_services_outlined,
+      'title': 'Chronic Pain',
+      'description': 'Psychological support to help cope with chronic pain and improve quality of life.',
     },
   ];
   
@@ -401,6 +446,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   Widget _buildServicesSection() {
     final bool isMobile = MediaQuery.of(context).size.width < 600;
+    final bool isTablet = MediaQuery.of(context).size.width >= 600 && MediaQuery.of(context).size.width < 960;
     
     return Container(
       width: double.infinity,
@@ -409,8 +455,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       child: Column(
         children: [
           SectionTitle(
-            title: AppConstants.servicesTitle,
-            subtitle: AppConstants.servicesSubtitle,
+            title: "Our Services",
+            subtitle: "Professional support for a wide range of mental health needs",
             centerAlign: true,
             startVisible: true,
           ),
@@ -423,12 +469,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               for (int i = 0; i < serviceCards.length; i++)
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width < 600 ? double.infinity : 320,
-                    minWidth: MediaQuery.of(context).size.width < 600 ? double.infinity : 280,
+                    maxWidth: isMobile 
+                      ? double.infinity 
+                      : isTablet 
+                        ? (MediaQuery.of(context).size.width - 60) / 2 
+                        : (MediaQuery.of(context).size.width - 120) / 3,
+                    minWidth: isMobile 
+                      ? double.infinity 
+                      : isTablet 
+                        ? (MediaQuery.of(context).size.width - 60) / 2 - 20
+                        : 300,
                   ),
                   child: ScrollRevealWidget(
                     direction: RevealDirection.fromBottom,
-                    delay: Duration(milliseconds: 100 * i),
+                    delay: Duration(milliseconds: 100 * (i % 3)),
                     startVisible: true,
                     child: PremiumCard(
                       title: serviceCards[i]['title']!,
@@ -442,21 +496,26 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
             ],
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 80), // Increased spacing before button
           ScrollRevealWidget(
             direction: RevealDirection.fromBottom,
             delay: const Duration(milliseconds: 400),
             startVisible: true,
-            child: PremiumButton(
-              text: 'Explore All Services',
-              onPressed: () {
-                widget.onNavigate(2); // Navigate to services screen
-              },
-              isOutlined: true,
-              useGoldFoil: true,
-              enableIntroAnimation: false,
+            child: Container(
+              width: isMobile ? double.infinity : 300,
+              child: PremiumButton(
+                text: 'Learn More',
+                onPressed: () {
+                  widget.onNavigate(2); // Navigate to services screen
+                },
+                isOutlined: false, // Make it a solid button
+                useGoldFoil: true, // Add gold effect for emphasis
+                enableIntroAnimation: false,
+                height: 60, // Slightly taller button
+              ),
             ),
           ),
+          const SizedBox(height: 40), // Added bottom spacing
         ],
       ),
     );
@@ -655,7 +714,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Container(
               constraints: const BoxConstraints(maxWidth: 700),
               child: Text(
-                "Schedule your confidential consultation to discover how our premium psychological services can help you achieve exceptional mental wellbeing and performance.",
+                "Schedule your consultation to discover how our professional psychological services can help you improve your mental wellbeing and personal growth.",
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: isMobile ? 16 : 18,
@@ -691,7 +750,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   delay: const Duration(milliseconds: 400),
                   startVisible: true,
                   child: PremiumButton(
-                    text: 'Learn More',
+                    text: 'Send Whatsapp',
                     width: double.infinity,
                     onPressed: () {
                       widget.onNavigate(1); // Navigate to about screen
@@ -726,7 +785,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   delay: const Duration(milliseconds: 400),
                   startVisible: true,
                   child: PremiumButton(
-                    text: 'Learn More',
+                    text: 'Send Whatsapp',
                     onPressed: () {
                       widget.onNavigate(1); // Navigate to about screen
                     },

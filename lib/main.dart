@@ -5,7 +5,6 @@ import 'screens/home_screen.dart';
 import 'screens/about_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/contact_screen.dart';
-import 'screens/blog_screen.dart';
 import 'theme/app_theme.dart';
 import 'constants/app_constants.dart';
 import 'widgets/premium_app_bar.dart';
@@ -153,8 +152,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         // Reset services screen animations
         // The services screen animations will reset automatically due to the
         // implementation of its _checkVisibility method
-      } else if (_selectedIndex == 3) {
-        // Reset blog screen
       }
     });
     
@@ -166,8 +163,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       case 2:
         return ServicesScreen(onNavigate: _onTabSelected);
       case 3:
-        return BlogScreen(onNavigate: _onTabSelected);
-      case 4:
         return const ContactScreen();
       default:
         return HomeScreen(onNavigate: _onTabSelected);
@@ -219,7 +214,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "Premium psychological services for discerning clients. Confidential, personalized, and results-oriented therapy.",
+                      "Clinical psychology services for all clients. Confidential, personalized, and results-oriented therapy.",
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 14,
@@ -242,6 +237,128 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                 ),
                 const SizedBox(height: 50),
                 
+                // Member of section
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildFooterSectionTitle("Member of"),
+                    const SizedBox(height: 20),
+                    MediaQuery.of(context).size.width < 800 
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // HPCSA Logo and text
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'images/HPCSA.jpg',
+                                height: 60,
+                                fit: BoxFit.contain,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Health Professions Council of South Africa",
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 12,
+                                  color: AppTheme.white.withOpacity(0.8),
+                                ),
+                              ),
+                              Text(
+                                "Reg No: PS0139874",
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 12,
+                                  color: AppTheme.white.withOpacity(0.8),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 30),
+                          // PsySSA Logo and text
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'images/PsySSA-Logo.png',
+                                height: 60,
+                                fit: BoxFit.contain,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Psychological Society of South Africa",
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 12,
+                                  color: AppTheme.white.withOpacity(0.8),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          // HPCSA Logo and text
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  'images/HPCSA.jpg',
+                                  height: 60,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  "Health Professions Council of South Africa",
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 12,
+                                    color: AppTheme.white.withOpacity(0.8),
+                                  ),
+                                ),
+                                Text(
+                                  "Reg No: PS0139874",
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 12,
+                                    color: AppTheme.white.withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          // PsySSA Logo and text
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  'images/PsySSA-Logo.png',
+                                  height: 60,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  "Psychological Society of South Africa",
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 12,
+                                    color: AppTheme.white.withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 50),
+
                 // Navigation section
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,8 +372,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                         _buildFooterLinkMobile("Home", 0),
                         _buildFooterLinkMobile("About", 1),
                         _buildFooterLinkMobile("Services", 2),
-                        _buildFooterLinkMobile("Blog", 3),
-                        _buildFooterLinkMobile("Contact", 4),
+                        _buildFooterLinkMobile("Contact", 3),
                       ],
                     ),
                   ],
@@ -273,8 +389,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       spacing: 16,
                       runSpacing: 12,
                       children: [
-                        _buildFooterLinkMobile("Executive Therapy", 2),
-                        _buildFooterLinkMobile("Relationship Coaching", 2),
+                        _buildFooterLinkMobile("Professional Counseling", 2),
+                        _buildFooterLinkMobile("Relationship Support", 2),
                         _buildFooterLinkMobile("Stress Management", 2),
                       ],
                     ),
@@ -289,8 +405,9 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Logo and description section
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -309,7 +426,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            "Premium psychological services for discerning clients. Confidential, personalized, and results-oriented therapy.",
+                            "Clinical psychology services for discerning clients. Confidential, personalized, and results-oriented therapy.",
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 14,
@@ -332,7 +449,134 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       ),
                     ),
                     const SizedBox(width: 60),
+                    // Member of section with adjusted flex
                     Expanded(
+                      flex: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildFooterSectionTitle("Member of"),
+                          const SizedBox(height: 20),
+                          MediaQuery.of(context).size.width < 1200
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // HPCSA Logo and text
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'images/HPCSA.jpg',
+                                      height: 60,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      "Health Professions Council of South Africa",
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 12,
+                                        color: AppTheme.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Reg No: PS0139874",
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 12,
+                                        color: AppTheme.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 30),
+                                // PsySSA Logo and text
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'images/PsySSA-Logo.png',
+                                      height: 60,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      "Psychological Society of South Africa",
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 12,
+                                        color: AppTheme.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          : Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // HPCSA Logo and text
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                        'images/HPCSA.jpg',
+                                        height: 60,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        "Health Professions Council of South Africa",
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          color: AppTheme.white.withOpacity(0.8),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Reg No: PS0139874",
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          color: AppTheme.white.withOpacity(0.8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 20),
+                                // PsySSA Logo and text
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                        'images/PsySSA-Logo.png',
+                                        height: 60,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        "Psychological Society of South Africa",
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          color: AppTheme.white.withOpacity(0.8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 60),
+                    // Navigation and Services in a column for better space management
+                    Expanded(
+                      flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -344,22 +588,13 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                           const SizedBox(height: 12),
                           _buildFooterLink("Services", 2),
                           const SizedBox(height: 12),
-                          _buildFooterLink("Blog", 3),
-                          const SizedBox(height: 12),
-                          _buildFooterLink("Contact", 4),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 60),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                          _buildFooterLink("Contact", 3),
+                          const SizedBox(height: 40),
                           _buildFooterSectionTitle("Services"),
                           const SizedBox(height: 20),
-                          _buildFooterLink("Executive Therapy", 2),
+                          _buildFooterLink("Professional Counseling", 2),
                           const SizedBox(height: 12),
-                          _buildFooterLink("Relationship Coaching", 2),
+                          _buildFooterLink("Relationship Support", 2),
                           const SizedBox(height: 12),
                           _buildFooterLink("Stress Management", 2),
                         ],
@@ -368,6 +603,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                     if (!isTablet) ...[
                       const SizedBox(width: 60),
                       Expanded(
+                        flex: 2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
